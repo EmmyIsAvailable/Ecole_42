@@ -21,6 +21,11 @@ int	main(int ac, char **av)
 	printf("%d\n", ft_atoi(test));
 	printf("%s\n", ft_memset(av[1], atoi(av[2]), atoi(av[3])));
 	printf("%s", memset(av[1], atoi(av[2]), atoi(av[3])));
+	printf("%s\n%s", ft_memcpy(av[1], oui, atoi(av[2])), memcpy(av[1], oui, atoi(av[2])));
+	char oui[100] = "je suis une choucroute";
+	printf("moi : %s\nvrai : %s", ft_memmove(oui+5, oui, 11), memmove(oui+5, oui, 11));
+	printf("moi : %s\nvrai : %s", ft_strchr(av[1], atoi(av[2])), strchr(av[1], atoi(av[2])));
 	*/
+	printf("moi : %s\nvrai : %s", ft_strrchr(av[1], atoi(av[2])), strrchr(av[1], atoi(av[2])));
 	return(0);
 }
