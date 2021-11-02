@@ -25,7 +25,10 @@ int	main(int ac, char **av)
 	char oui[100] = "je suis une choucroute";
 	printf("moi : %s\nvrai : %s", ft_memmove(oui+5, oui, 11), memmove(oui+5, oui, 11));
 	printf("moi : %s\nvrai : %s", ft_strchr(av[1], atoi(av[2])), strchr(av[1], atoi(av[2])));
-	*/
 	printf("moi : %s\nvrai : %s", ft_strrchr(av[1], atoi(av[2])), strrchr(av[1], atoi(av[2])));
+	printf("moi : %s\nvrai : %s", ft_strnstr(av[1], av[2], atoi(av[3])), strnstr(av[1], av[2], atoi(av[3]));
+	printf("moi : %s\nvrai : %s", ft_memchr(av[1], atoi(av[2]), atoi(av[3])), memchr(av[1], atoi(av[2]), atoi(av[3])));
+	*/
+	printf("moi : %d\nvrai : %d", ft_memcmp(av[1], av[2], atoi(av[3])), memcmp(av[1], av[2], atoi(av[3])));
 	return(0);
 }

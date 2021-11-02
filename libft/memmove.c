@@ -1,4 +1,4 @@
-void	*ft_memmove(void *dest, const void *src, unsigned int n)
+void	*ft_memmove(void *dest, void *src, unsigned int n)
 {
 	unsigned int	i;
 	char	*cast_dest;
