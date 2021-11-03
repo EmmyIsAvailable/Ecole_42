@@ -6,17 +6,18 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	/*(void)av;*/
+	int	i = 0;
 	int	a = 97;
 	int	A = 65;
 	int	zero = 48;
 	int	pt_excl = 33;
 	int	tab = 9;
-	int	delete = 127;
+	int	del = 127;
 	const char *test = "  	 -89u7";
-	const char *oui = "bla";
-	const char *non = "pouet";
+	const char *oui = "j'aime ";
+	const char *non = "le poulet au curry";
 	/*
-	printf("a : %d\nA : %d\nzero : %d\npt_excl : %d\ntab : %d\ndelete : %d\n", ft_isalpha(a), ft_isalpha(A), ft_isalpha(zero), ft_isalpha(pt_excl), ft_isalpha(tab), ft_isalpha(delete));
+	printf("a : %d\nA : %d\nzero : %d\npt_excl : %d\ntab : %d\ndelete : %d\n", ft_isalpha(a), ft_isalpha(A), ft_isalpha(zero), ft_isalpha(pt_excl), ft_isalpha(tab), ft_isalpha(del));
 	printf("%ld\n", ft_strlen("coucou"));
 	printf("%d\n", ft_strncmp(av[1], av[2], atoi(av[3])));
 	printf("a : %d\nA : %d\n", ft_toupper(a), ft_toupper(A));
@@ -33,7 +34,6 @@ int	main(int ac, char **av)
 	printf("moi : %d\nvrai : %d", ft_memcmp(av[1], av[2], atoi(av[3])), memcmp(av[1], av[2], atoi(av[3])));
 	
 	char *ptr;
-	int	i = 0;
 	ptr = calloc(10, sizeof(char));
 	if (ptr == NULL)
 		return (0);
@@ -47,6 +47,14 @@ int	main(int ac, char **av)
 	free(ptr);
 	printf("moi : %s\nvrai : %s", ft_strdup(av[1]), strdup(av[1]));
 	printf("moi : %s\n", ft_strjoin(oui, non));
+	printf("%s\n", ft_substr(non, 3, 6));
+	char	**tableau;
+	tableau = ft_split(non, ' ');
+	while (tableau[i])
+	{
+		printf("%s\n", tableau[i]);
+		i++;
+	}
 	*/
 	return(0);
 }
