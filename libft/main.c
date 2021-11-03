@@ -14,7 +14,7 @@ int	main(int ac, char **av)
 	int	tab = 9;
 	int	del = 127;
 	const char *test = "  	 -89u7";
-	const char *oui = "j'aime ";
+	const char *oui = " j'aime ";
 	const char *non = "le poulet au curry";
 	/*
 	printf("a : %d\nA : %d\nzero : %d\npt_excl : %d\ntab : %d\ndelete : %d\n", ft_isalpha(a), ft_isalpha(A), ft_isalpha(zero), ft_isalpha(pt_excl), ft_isalpha(tab), ft_isalpha(del));
@@ -56,5 +56,6 @@ int	main(int ac, char **av)
 		i++;
 	}
 	*/
+	printf("%s", ft_strtrim(oui, " "));
 	return(0);
 }
