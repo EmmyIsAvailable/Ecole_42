@@ -55,7 +55,8 @@ int	main(int ac, char **av)
 		printf("%s\n", tableau[i]);
 		i++;
 	}
-	*/
 	printf("%s", ft_strtrim(oui, " "));
+	*/
+	printf("%s", ft_itoa(-4136));
 	return(0);
 }
