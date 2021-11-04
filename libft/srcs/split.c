@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <libft.h>
 
 int	nb_words(char const *s, char c)
 {
