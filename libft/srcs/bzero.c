@@ -1,6 +1,8 @@
-void	ft_bzero(void *s, unsigned int n)
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned int	i;
+	size_t i;
 	char	*cast_s;
 	
 	i = 0;

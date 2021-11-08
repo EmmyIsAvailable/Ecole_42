@@ -1,6 +1,8 @@
-void	*ft_memset(void *s, int c, unsigned int n)
+#include "libft.h"
+
+void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned int	i;
+	size_t	i;
 	char	*cast_s;	
 	
 	i = 0;

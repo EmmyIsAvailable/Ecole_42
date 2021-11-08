@@ -62,6 +62,10 @@ int	main(int ac, char **av)
 	}
 	printf("%s", ft_strtrim(oui, " "));
 	printf("%s", ft_itoa(-4136));
-	printf("%s", ft_strmapi(non, f));*/
+	printf("%s", ft_strmapi(non, f));
+	ft_putchar_fd('o', 1);
+	ft_putstr_fd("patouille la citrouille", 1);
+	ft_putendl_fd("libellule chenille", 1);*/
+	ft_putnbr_fd(-67, 1);
 	return(0);
 }

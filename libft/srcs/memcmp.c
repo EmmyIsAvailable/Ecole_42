@@ -1,8 +1,10 @@
-int	ft_memcmp(void *s1, void *s2, unsigned int n)
+#include "libft.h"
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	char	*cast_s1;
 	char	*cast_s2;
-	unsigned int	i;
+	size_t	i;
 	
 	cast_s1 = (char *)s1;
 	cast_s2 = (char *)s2;

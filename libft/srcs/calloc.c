@@ -1,9 +1,9 @@
-#include <libft.h>
+#include "libft.h"
 
-void	*ft_calloc(unsigned int nmemb, unsigned int size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	unsigned int	i;
+	size_t	i;
 	int	*cast_ptr;
 	
 	i = 0;

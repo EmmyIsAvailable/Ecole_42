@@ -1,6 +1,6 @@
-#include <libft.h>
+#include "libft.h"
 
-int	nb_digits(int n)
+static int	nb_digits(int n)
 {
 	int	digits;
 	
@@ -18,7 +18,7 @@ int	nb_digits(int n)
 	return (digits + 1);
 }
 
-char	*fill_numbers(int n, char *tofill, int len)
+static char	*fill_numbers(int n, char *tofill, int len)
 {
 	if (n > 9)
 		fill_numbers((n / 10), tofill, (len - 1));

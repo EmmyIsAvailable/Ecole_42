@@ -1,7 +1,9 @@
-void	*ft_memchr(void *s, int c, unsigned int n)
+#include "libft.h"
+
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	char	*cast_s;
-	unsigned int	i;
+	size_t	i;
 	
 	cast_s = (unsigned char *)s;
 	i = 0;
