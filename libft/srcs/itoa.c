@@ -1,6 +1,6 @@
 #include "libft.h"
 
-static int	nb_digits(int n)
+static int	nb_digits(long int n)
 {
 	int	digits;
 	
@@ -18,7 +18,7 @@ static int	nb_digits(int n)
 	return (digits + 1);
 }
 
-static char	*fill_numbers(int n, char *tofill, int len)
+static char	*fill_numbers(long int n, char *tofill, int len)
 {
 	if (n > 9)
 		fill_numbers((n / 10), tofill, (len - 1));
@@ -28,19 +28,21 @@ static char	*fill_numbers(int n, char *tofill, int len)
 
 char	*ft_itoa(int n)
 {
-	char	*number;
-	int	digits;
+	char		*number;
+	int			digits;
+	long int	nb;
 	
-	digits = nb_digits(n);
+	nb = n;
+	digits = nb_digits(nb);
 	number = (char *)malloc(sizeof(char) * (digits + 1));
 	if (!number)
 		return (NULL);
-	if (n < 0)
+	if (nb < 0)
 	{
 		number[0] = '-';
-		n *= (-1);
+		nb *= (-1);
 	}
-	fill_numbers(n, number, digits);
+	fill_numbers(nb, number, digits);
 	number[digits] = '\0';
 	return (number);
 }
