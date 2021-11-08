@@ -1,6 +1,6 @@
 #include <libft.h>
 
-int	nb_words(char const *s, char c)
+static int	nb_words(char const *s, char c)
 {
 	int	i;
 	int	count;
@@ -22,7 +22,7 @@ int	nb_words(char const *s, char c)
 	return (count);
 }
 
-char	*ft_strncpy(char *dest, const char *src, int n)
+static char	*ft_strncpy(char *dest, const char *src, int n)
 {
 	int	i;
 	
@@ -36,7 +36,7 @@ char	*ft_strncpy(char *dest, const char *src, int n)
 	return (dest);
 }
 
-char	**fill_words(char **res, char const *s, char c)
+static char	**fill_words(char **res, char const *s, char c)
 {
 	int	i;
 	int	len;

@@ -1,6 +1,6 @@
-#include <stdlib.h>
+#include <libft.h>
 
-int	len_chaine(const char *s)
+static int	len_chaine(const char *s)
 {
 	int	i;
 	

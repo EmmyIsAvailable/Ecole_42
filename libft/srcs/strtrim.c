@@ -1,6 +1,6 @@
-#include <stdlib.h>
+#include "libft.h"
 
-int	is_in_charset(char c, char const *set)
+static int	is_in_charset(char c, char const *set)
 {
 	int	i;
 	
@@ -14,7 +14,7 @@ int	is_in_charset(char c, char const *set)
 	return (0);
 }
 
-int	nb_total(char const *s1, char const *set)
+static int	nb_total(char const *s1, char const *set)
 {
 	int	i;
 	int len;
@@ -29,7 +29,7 @@ int	nb_total(char const *s1, char const *set)
 	return (len);
 }
 
-char	*fill_str(char *str, char const *s1, char const *set)
+static char	*fill_str(char *str, char const *s1, char const *set)
 {
 	int	i;
 	int	j;

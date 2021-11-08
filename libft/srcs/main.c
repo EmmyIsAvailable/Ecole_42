@@ -1,6 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "libft.h"
+
+char	f(unsigned int i, char c)
+{
+	if (i >= 0)
+		c -= 32;
+	return (c);
+}
 
 int	main(int ac, char **av)
 {
@@ -15,10 +20,10 @@ int	main(int ac, char **av)
 	int	del = 127;
 	const char *test = "  	 -89u7";
 	const char *oui = " j'aime ";
-	const char *non = "le poulet au curry";
+	const char *non = "le*poulet*au*curry";
 	/*
 	printf("a : %d\nA : %d\nzero : %d\npt_excl : %d\ntab : %d\ndelete : %d\n", ft_isalpha(a), ft_isalpha(A), ft_isalpha(zero), ft_isalpha(pt_excl), ft_isalpha(tab), ft_isalpha(del));
-	printf("%ld\n", ft_strlen("coucou"));
+	printf("%lu\n", ft_strlen(oui));
 	printf("%d\n", ft_strncmp(av[1], av[2], atoi(av[3])));
 	printf("a : %d\nA : %d\n", ft_toupper(a), ft_toupper(A));
 	printf("%d\n", ft_atoi(test));
@@ -56,7 +61,7 @@ int	main(int ac, char **av)
 		i++;
 	}
 	printf("%s", ft_strtrim(oui, " "));
-	*/
 	printf("%s", ft_itoa(-4136));
+	printf("%s", ft_strmapi(non, f));*/
 	return(0);
 }

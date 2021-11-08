@@ -1,16 +1,14 @@
-unsigned int	ft_strlcat(char *dst, const char *src, unsigned int size)
+#include "libft.h"
+
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	unsigned int	len_dst;
-	unsigned int	len_src;
-	unsigned int	i;
+	size_t	len_dst;
+	size_t	len_src;
+	size_t	i;
 	
-	len_dst = 0;
-	len_src = 0;
+	len_dst = ft_strlen(dst);
+	len_src = ft_strlen(src);
 	i = 0;
-	while(dst[len_dst])
-		len_dst++;
-	while (src[len_src])
-		len_src++;
 	if(size - len_dst - 1 < 0)
 		return(size + len_src);
 	while(src[i] && len_dst + i < size - 1)
