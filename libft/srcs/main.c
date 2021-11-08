@@ -1,4 +1,5 @@
 #include "libft.h"
+#include <string.h>
 
 char	f(unsigned int i, char c)
 {
@@ -29,7 +30,7 @@ int	main(int ac, char **av)
 	printf("%d\n", ft_atoi(test));
 	printf("%s\n", ft_memset(av[1], atoi(av[2]), atoi(av[3])));
 	printf("%s", memset(av[1], atoi(av[2]), atoi(av[3])));
-	printf("%s\n%s", ft_memcpy(av[1], oui, atoi(av[2])), memcpy(av[1], oui, atoi(av[2])));
+	printf("%s\n%s", ft_memcpy(av[1], "", atoi(av[2])), memcpy(av[1], "", atoi(av[2])));
 	char oui[100] = "je suis une choucroute";
 	printf("moi : %s\nvrai : %s", ft_memmove(oui+5, oui, 11), memmove(oui+5, oui, 11));
 	printf("moi : %s\nvrai : %s", ft_strchr(av[1], atoi(av[2])), strchr(av[1], atoi(av[2])));
@@ -65,7 +66,7 @@ int	main(int ac, char **av)
 	printf("%s", ft_strmapi(non, f));
 	ft_putchar_fd('o', 1);
 	ft_putstr_fd("patouille la citrouille", 1);
-	ft_putendl_fd("libellule chenille", 1);*/
-	ft_putnbr_fd(-67, 1);
+	ft_putendl_fd("libellule chenille", 1);
+	ft_putnbr_fd(-67, 1);*/
 	return(0);
 }
