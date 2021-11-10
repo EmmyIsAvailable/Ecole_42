@@ -22,6 +22,7 @@ int	main(int ac, char **av)
 	const char *test = "  	 -89u7";
 	const char *oui = " j'aime ";
 	const char *non = "le*poulet*au*curry";
+	void *lol = "abracadabra";
 	/*
 	printf("a : %d\nA : %d\nzero : %d\npt_excl : %d\ntab : %d\ndelete : %d\n", ft_isalpha(a), ft_isalpha(A), ft_isalpha(zero), ft_isalpha(pt_excl), ft_isalpha(tab), ft_isalpha(del));
 	printf("%lu\n", ft_strlen(oui));
@@ -68,5 +69,17 @@ int	main(int ac, char **av)
 	ft_putstr_fd("patouille la citrouille", 1);
 	ft_putendl_fd("libellule chenille", 1);
 	ft_putnbr_fd(-67, 1);*/
+	t_list *retour = ft_lstnew("coucou");
+	t_list	**aller = &retour;
+	ft_lstadd_front(aller, ft_lstnew(lol));
+	ft_lstadd_front(aller, ft_lstnew("prout"));
+	printf("%d", ft_lstsize(*aller));
+	printf("%s\n", ft_lstlast(*aller)->content);
+	ft_lstadd_back(aller, ft_lstnew("encore moi"));
+	while (*aller)
+	{
+		printf("%s\n", (*aller)->content);
+		(*aller) = (*aller) -> next;
+	}
 	return(0);
 }
