@@ -1,20 +1,22 @@
-NAME 	= libft.a
+NAME 		= libft.a
 
-FLAGS 	= -Wall -Wextra -Werror
+FLAGS 		= -Wall -Wextra -Werror
 
-SRCS 	= atoi.c isprint.c strmapi.c isalpha.c isdigit.c isalnum.c isascii.c \
-		strlen.c memset.c bzero.c memcpy.c memmove.c strlcpy.c strlcat.c \
-		toupper.c tolower.c strchr.c strrchr.c strncmp.c memchr.c memcmp.c \
-		strnstr.c calloc.c strdup.c substr.c strjoin.c strtrim.c split.c \
-		itoa.c 
+SRCS 		= atoi.c bzero.c calloc.c isalnum.c isalpha.c isascii.c isdigit.c //
+			isprint.c itoa.c memchr.c memcmp.c memcpy.c memmove.c memset.c //
+			putchar_fd.c putendl_fd.c putnbr_fd.c putstr_fd.c split.c strchr.c //
+			strdup.c striteri.c strjoin.c strlcat.c strlcpy.c strlen.c strmapi.c //
+			strncmp.c strnstr.c strrchr.c strtrim.c substr.c tolower.c toupper.c
 
-OBJS 	= ${addprefix ${SRCDIR}, ${SRCS:.c=.o}}
+BONUS		= lstnew.c
 
-SRCDIR 	= ./srcs/
+OBJS 		= ${SRCS:.c=.o}
 
-INCDIR 	= ./includes/
+BONUS_OBJS	= ${BONUS:.c=.o}
 
-RM 		= rm -rf
+INCDIR 		= ./includes/
+
+RM 			= rm -rf
 
 all: 		${NAME}
 
@@ -24,8 +26,11 @@ all: 		${NAME}
 ${NAME}: 	${OBJS}
 				ar rc ${NAME} ${OBJS}
 
+bonus:		${OBJS} ${BONUS_OBJS}
+				ar rc ${NAME} ${OBJS} ${BONUS_OBJS}
+
 clean:
-				${RM} ${OBJS}
+				${RM} ${OBJS} ${BONUS_OBJS}
 
 fclean:		clean
 				${RM} ${NAME}
