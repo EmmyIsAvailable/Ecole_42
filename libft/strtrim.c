@@ -1,6 +1,6 @@
 #include "libft.h"
 
-static int	is_in_charset(char c, char const *set)
+static int	is_in_charset(char c, char *set)
 {
 	int	i;
 	
@@ -14,7 +14,7 @@ static int	is_in_charset(char c, char const *set)
 	return (0);
 }
 
-static int	nb_total(char const *s1, char const *set)
+static int	nb_total(char *s1, char *set)
 {
 	int	i;
 	int len;
@@ -29,7 +29,7 @@ static int	nb_total(char const *s1, char const *set)
 	return (len);
 }
 
-static char	*fill_str(char *str, char const *s1, char const *set)
+static char	*fill_str(char *str, char *s1, char *set)
 {
 	int	i;
 	int	j;
@@ -47,13 +47,19 @@ static char	*fill_str(char *str, char const *s1, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	len;
+	int		len;
 	char	*str_trimmed;
+	char	*cast_s1;
+	char	*cast_set;
 	
-	len = nb_total(s1, set);
+	cast_s1 = (char *)s1;
+	cast_set = (char *)set;
+	len = nb_total(cast_s1, cast_set);
+	if (!s1 || !set)
+		return (NULL);
 	str_trimmed = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str_trimmed)
 		return (NULL);
-	fill_str(str_trimmed, s1, set);
+	fill_str(str_trimmed, cast_s1, cast_set);
 	return (str_trimmed);
 }

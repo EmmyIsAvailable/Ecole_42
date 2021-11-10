@@ -1,4 +1,4 @@
-#include <libft.h>
+#include "libft.h"
 
 static int	nb_words(char const *s, char c)
 {
@@ -74,6 +74,6 @@ char	**ft_split(char const *s, char c)
 	if (!split)
 		return (NULL);
 	fill_words(split, s, c);
-	split[words + 1] = NULL;
+	split[words] = NULL;
 	return (split);
 }

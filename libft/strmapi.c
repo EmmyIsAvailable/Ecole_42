@@ -2,8 +2,8 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	len;
-	char	*new;
+	size_t			len;
+	char			*new;
 	unsigned int	i;
 	
 	i = -1;

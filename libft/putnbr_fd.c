@@ -6,6 +6,5 @@ void	ft_putnbr_fd(int n, int fd)
 	size_t	len;
 	
 	nb = ft_itoa(n);
-	len = ft_strlen(nb);
-	write(fd, nb, len);
+	ft_putstr_fd(nb, fd);
 }

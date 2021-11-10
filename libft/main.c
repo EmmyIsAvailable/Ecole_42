@@ -53,9 +53,9 @@ int	main(int ac, char **av)
 	free(ptr);
 	printf("moi : %s\nvrai : %s", ft_strdup(av[1]), strdup(av[1]));
 	printf("moi : %s\n", ft_strjoin(oui, non));
-	printf("%s\n", ft_substr(non, 3, 6));
+	printf("%s\n", ft_substr(non, 3, 17));
 	char	**tableau;
-	tableau = ft_split(non, ' ');
+	tableau = ft_split(non, '*');
 	while (tableau[i])
 	{
 		printf("%s\n", tableau[i]);
