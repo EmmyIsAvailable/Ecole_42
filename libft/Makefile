@@ -8,7 +8,8 @@ SRCS 		= atoi.c bzero.c calloc.c isalnum.c isalpha.c isascii.c isdigit.c //
 			strdup.c striteri.c strjoin.c strlcat.c strlcpy.c strlen.c strmapi.c //
 			strncmp.c strnstr.c strrchr.c strtrim.c substr.c tolower.c toupper.c
 
-BONUS		= lstnew.c lstadd_front.c lstsize.c lstlast.c lstadd_back.c
+BONUS		= lstnew.c lstadd_front.c lstsize.c lstlast.c lstadd_back.c lstdelone.c //
+			
 
 OBJS 		= ${SRCS:.c=.o}
 
