@@ -8,6 +8,16 @@ char	f(unsigned int i, char c)
 	return (c);
 }
 
+void	fe(void *str)
+{
+	printf("\t%s\n", str);
+}
+
+void	del(void *content)
+{
+	content = NULL;
+}
+
 int	main(int ac, char **av)
 {
 	(void)ac;
@@ -18,13 +28,13 @@ int	main(int ac, char **av)
 	int	zero = 48;
 	int	pt_excl = 33;
 	int	tab = 9;
-	int	del = 127;
+	int	delete = 127;
 	const char *test = "  	 -89u7";
 	const char *oui = " j'aime ";
 	const char *non = "le*poulet*au*curry";
 	void *lol = "abracadabra";
 	/*
-	printf("a : %d\nA : %d\nzero : %d\npt_excl : %d\ntab : %d\ndelete : %d\n", ft_isalpha(a), ft_isalpha(A), ft_isalpha(zero), ft_isalpha(pt_excl), ft_isalpha(tab), ft_isalpha(del));
+	printf("a : %d\nA : %d\nzero : %d\npt_excl : %d\ntab : %d\ndelete : %d\n", ft_isalpha(a), ft_isalpha(A), ft_isalpha(zero), ft_isalpha(pt_excl), ft_isalpha(tab), ft_isalpha(delete));
 	printf("%lu\n", ft_strlen(oui));
 	printf("%d\n", ft_strncmp(av[1], av[2], atoi(av[3])));
 	printf("a : %d\nA : %d\n", ft_toupper(a), ft_toupper(A));
@@ -76,6 +86,8 @@ int	main(int ac, char **av)
 	printf("%d", ft_lstsize(*aller));
 	printf("%s\n", ft_lstlast(*aller)->content);
 	ft_lstadd_back(aller, ft_lstnew("encore moi"));
+	//ft_lstclear(aller, &free);
+	ft_lstiter(*aller, &fe);
 	while (*aller)
 	{
 		printf("%s\n", (*aller)->content);
