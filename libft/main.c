@@ -1,7 +1,7 @@
 #include "libft.h"
 #include <string.h>
 
-char	f(unsigned int i, char c)
+int	f(unsigned int i, int c)
 {
 	if (i >= 0)
 		c -= 32;
@@ -13,9 +13,22 @@ void	fe(void *str)
 	printf("\t%s\n", str);
 }
 
-void	del(void *content)
+void	*fem(void *str)
 {
-	content = NULL;
+	unsigned int i = 0;
+	char	*stri;
+	char	*res;
+	
+	stri = (char *)str;
+	if (!(res = (char *)malloc(sizeof(char) * (ft_strlen(stri) + 1))))
+		return (NULL);
+	while (stri[i])
+	{
+		res[i] = f(i, (int)stri[i]);
+		i++;
+	}
+	res[i] = '\0';
+	return ((void *)res);
 }
 
 int	main(int ac, char **av)
@@ -88,10 +101,11 @@ int	main(int ac, char **av)
 	ft_lstadd_back(aller, ft_lstnew("encore moi"));
 	//ft_lstclear(aller, &free);
 	ft_lstiter(*aller, &fe);
-	while (*aller)
+	t_list *map = ft_lstmap(*aller, &fem, &free);
+	while (map)
 	{
-		printf("%s\n", (*aller)->content);
-		(*aller) = (*aller) -> next;
+		printf("%s\n", (map)->content);
+		map = map -> next;
 	}
 	return(0);
 }
