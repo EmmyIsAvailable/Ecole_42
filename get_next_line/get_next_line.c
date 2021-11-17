@@ -13,7 +13,55 @@ static char	*get_line(char *to_read)
 	char	*substr;
 	
 	i = 0;
+	if (!to_read)
+		return (NULL);
+	while (to_read[i] && to_read[i] != '\n')
+		i++;
+	substr = (char *)malloc(sizeof(char) * (i + 1));
+	if (!substr)
+		return (NULL);
+	i = 0;
+	while (to_read[i] && to_read[i] != '\n')
+	{
+		substr[i] = to_read[i];
+		i++;
+	}
+	if (to_read[i] == '\n')
+	{
+		substr[i] = '\n';
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
+}
+
+static char	*get_next(char *to_read)
+{
+	int		i;
+	int		j;
+	char	*next;
 	
+	i = 0;
+	j = 0;
+	while (to_read[i] && to_read[i] != '\n')
+		i++;
+	if (to_read[i] == '\0')
+	{
+		free (to_read);
+		return (NULL);
+	}
+	next = (char *)malloc(sizeof(char) * (ft_strlen(to_read) - i + 1));
+	if (!next)
+		return (NULL);
+	i++;
+	while (to_read[i + j])
+	{
+		next[j] = to_read[i + j];
+		j++;
+	}
+	next[j] = '\0';
+	free(to_read);
+	return (next);
 }
 
 char	*get_next_line(int fd)
@@ -29,18 +77,24 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
-	while (!prochain_n(to_read) && (i  > 0))
+	while (!prochain_n(to_read) && (i > 0))
 	{
 		i = read(fd, buf, BUFFER_SIZE);
 		if (i == -1)	
-			return (free_ligne(to_read, NULL));
+			return (free_ligne(buf, NULL));
 		buf[i] = '\0';
-		to_read = "";
-		to_read = ft_strjoin(to_read, buf);
+		printf("buf : %s\n", buf);
+		to_read = ft_strdup(buf);
 		if (!to_read)
 			return (free_ligne(to_read, NULL));
 	}
-	if (i == 0 && (to_read == NULL || buf[0] == '\0'))
-		return ("");
-	return (to_read);
+	free(buf);
+	line = get_line(to_read);
+	if (!prochain_n(to_read))
+		line = NULL;
+	to_read = get_next(to_read);
+	printf("to read : %s\n", to_read);
+	if (i == 0)
+		return (NULL);
+	return (line);
 }
