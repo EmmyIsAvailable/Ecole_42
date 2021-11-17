@@ -46,13 +46,15 @@ char	*ft_strdup(char	*str)
 	return (dup);
 }
 
-int	prochain_n(char *a_lire)
+int	prochain_n(char *to_read)
 {
 	int	i;
 	
 	i = -1;
-	while (a_lire[++i])
-		if (a_lire[i] == '\n')
-			return (0);
-	return (1);
+	if (!to_read)
+		return (0);
+	while (to_read[++i])
+		if (to_read[i] == '\n')
+			return (1);
+	return (0);
 }
