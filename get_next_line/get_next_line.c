@@ -63,7 +63,7 @@ static char	*get_next(char *to_read)
 	free(to_read);
 	return (next);
 }
-
+// à vérifier : que l'on lise bien la ligne jusqu'au dernier \n possible dans la limite du BUFFER_SIZE
 char	*get_next_line(int fd)
 {
 	char		*buf;
@@ -77,24 +77,24 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
+	if (!prochain_n(to_read) && to_read)
+		return (NULL);
 	while (!prochain_n(to_read) && (i > 0))
 	{
 		i = read(fd, buf, BUFFER_SIZE);
 		if (i == -1)	
 			return (free_ligne(buf, NULL));
 		buf[i] = '\0';
-		printf("buf : %s\n", buf);
-		to_read = ft_strdup(buf);
+		to_read = ft_strjoin(to_read, buf);
 		if (!to_read)
 			return (free_ligne(to_read, NULL));
 	}
 	free(buf);
 	line = get_line(to_read);
-	if (!prochain_n(to_read))
-		line = NULL;
-	to_read = get_next(to_read);
-	printf("to read : %s\n", to_read);
-	if (i == 0)
+	if (!prochain_n(line))
 		return (NULL);
+	to_read = get_next(to_read);
+	if (i == 0)
+		return ("");
 	return (line);
 }
