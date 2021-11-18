@@ -1,5 +1,5 @@
 #include "get_next_line.h"
-#include <stdio.h>
+
 static char	*free_ligne(char *to_free, char *retour)
 {
 	to_free = NULL;

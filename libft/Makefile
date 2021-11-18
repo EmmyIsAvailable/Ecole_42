@@ -17,7 +17,7 @@ BONUS_OBJS	= ${BONUS:.c=.o}
 
 INCDIR 		= ./includes/
 
-RM 			= rm -rf
+RM 			= rm -f
 
 all: 		${NAME}
 
