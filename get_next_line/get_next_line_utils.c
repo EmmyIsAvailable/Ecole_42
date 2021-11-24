@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/24 14:32:32 by eruellan          #+#    #+#             */
+/*   Updated: 2021/11/24 14:34:06 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -6,7 +18,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*join;
 	int		i;
 	int		j;
-	
+
 	i = -1;
 	j = 0;
 	if (!s1)
@@ -22,17 +34,17 @@ char	*ft_strjoin(char *s1, char *s2)
 			join[i] = s1[i];
 	while (s2[j])
 	{
-		join[i+j] = s2[j];
+		join[i + j] = s2[j];
 		j++;
 	}
-	join[i+j] = '\0';
+	join[i + j] = '\0';
 	return (join);
 }
 
 size_t	ft_strlen(char *str)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (str[i])
 		i++;
@@ -43,9 +55,9 @@ char	*ft_strdup(char	*str)
 {
 	char	*dup;
 	int		i;
-	
+
 	i = -1;
-	dup = (char *)malloc(sizeof(char)*(ft_strlen(str) + 1));
+	dup = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
 	if (!dup)
 		return (NULL);
 	while (str[++i])
@@ -57,7 +69,7 @@ char	*ft_strdup(char	*str)
 int	prochain_n(char *to_read)
 {
 	int	i;
-	
+
 	i = -1;
 	if (!to_read)
 		return (0);

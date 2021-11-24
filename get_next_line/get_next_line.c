@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/24 14:14:22 by eruellan          #+#    #+#             */
+/*   Updated: 2021/11/24 16:27:19 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 static char	*free_ligne(char *to_free, char *retour)
@@ -11,7 +23,7 @@ static char	*get_line(char *to_read)
 {
 	int		i;
 	char	*substr;
-	
+
 	i = 0;
 	if (!to_read)
 		return (NULL);
@@ -40,7 +52,7 @@ static char	*get_next(char *to_read)
 	int		i;
 	int		j;
 	char	*next;
-	
+
 	i = 0;
 	j = 0;
 	while (to_read[i] && to_read[i] != '\n')
@@ -63,26 +75,13 @@ static char	*get_next(char *to_read)
 	free(to_read);
 	return (next);
 }
-// à vérifier : que l'on lise bien la ligne jusqu'au dernier \n possible dans la limite du BUFFER_SIZE
-char	*get_next_line(int fd)
-{
-	char		*buf;
-	int			i;
-	static char	*to_read;
-	char		*line;
 
-	i = 1;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, buf, 0) == -1)
-		return (NULL);
-	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
-		return (NULL);
-	if (!prochain_n(to_read) && to_read)
-		return (NULL);
+static char	*get_to_read(int fd, char *buf, char *to_read, int i)
+{
 	while (!prochain_n(to_read) && (i > 0))
 	{
 		i = read(fd, buf, BUFFER_SIZE);
-		if (i == -1)	
+		if (i == -1)
 			return (free_ligne(buf, NULL));
 		buf[i] = '\0';
 		to_read = ft_strjoin(to_read, buf);
@@ -90,6 +89,24 @@ char	*get_next_line(int fd)
 			return (free_ligne(to_read, NULL));
 	}
 	free(buf);
+	return (to_read);
+}
+
+char	*get_next_line(int fd)
+{
+	int			i;
+	static char	*to_read;
+	char		*line;
+	char		*buf;
+
+	i = 1;
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, buf, 0) == -1
+		|| (!prochain_n(to_read) && to_read))
+		return (NULL);
+	to_read = get_to_read(fd, buf, to_read, i);
 	line = get_line(to_read);
 	if (!prochain_n(line))
 		return (NULL);
