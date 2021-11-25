@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:06:37 by eruellan          #+#    #+#             */
-/*   Updated: 2021/11/23 17:06:06 by eruellan         ###   ########.fr       */
+/*   Updated: 2021/11/25 14:19:10 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	if ((!s1 && !s2) || n == 0)
 		return (0);
-	while (cast_s1[i] && cast_s2[i] && cast_s1[i] == cast_s2[i] && i < n - 1)
+	while (cast_s1[i] == cast_s2[i] && i < n - 1)
 		i++;
 	return (cast_s1[i] - cast_s2[i]);
 }

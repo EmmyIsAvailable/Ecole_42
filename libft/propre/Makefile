@@ -15,16 +15,14 @@ OBJS 		= $(SRCS:.c=.o)
 
 BONUS_OBJS	= $(BONUS:.c=.o)
 
-INCDIR 		= ./includes/
-
 RM 			= rm -f
 
-all: 		$(NAME)
+all:		$(NAME)
 
-.c.o:
-				gcc $(FLAGS) -I $(INCDIR) -c $< -o $(<:.c=.o)
+.c.o:		
+				gcc $(FLAGS) -c $< -o ${<:.c=.o}
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS)	
 				ar rc $(NAME) $(OBJS)
 				ranlib $(NAME)
 
