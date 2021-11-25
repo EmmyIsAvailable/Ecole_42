@@ -1,9 +1,21 @@
-#ifndef __LIBFT_H__
-# define __LIBFT_H__
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/23 10:54:52 by eruellan          #+#    #+#             */
+/*   Updated: 2021/11/23 11:00:46 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+#ifndef LIBFT_H
+# define LIBFT_H
+
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
 
 int		ft_toupper(int c);
 int		ft_tolower(int c);
@@ -40,7 +52,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;

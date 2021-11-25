@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   substr.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/23 11:29:40 by eruellan          #+#    #+#             */
+/*   Updated: 2021/11/23 11:29:56 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -5,7 +17,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*sub;
 	size_t	i;
 	char	*cast_s;
-	
+
 	i = 0;
 	cast_s = (char *)s;
 	if (!s)

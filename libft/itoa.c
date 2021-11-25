@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   itoa.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/23 10:53:54 by eruellan          #+#    #+#             */
+/*   Updated: 2021/11/23 10:54:33 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	nb_digits(long int n)
 {
 	int	digits;
-	
+
 	digits = 0;
 	if (n < 0)
 	{
@@ -31,7 +43,7 @@ char	*ft_itoa(int n)
 	char		*number;
 	int			digits;
 	long int	nb;
-	
+
 	nb = n;
 	digits = nb_digits(nb);
 	number = (char *)malloc(sizeof(char) * (digits + 1));

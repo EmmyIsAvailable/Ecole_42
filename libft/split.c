@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/23 11:10:11 by eruellan          #+#    #+#             */
+/*   Updated: 2021/11/23 11:11:06 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	nb_words(char const *s, char c)
@@ -5,7 +17,7 @@ static int	nb_words(char const *s, char c)
 	int	i;
 	int	count;
 	int	len;
-	
+
 	i = 0;
 	count = 0;
 	while (s[i])
@@ -25,7 +37,7 @@ static int	nb_words(char const *s, char c)
 static char	*ft_strncpy(char *dest, const char *src, int n)
 {
 	int	i;
-	
+
 	i = 0;
 	while (src[i] && i < n)
 	{
@@ -41,7 +53,7 @@ static char	**fill_words(char **res, char const *s, char c)
 	int	i;
 	int	len;
 	int	j;
-	
+
 	i = 0;
 	j = 0;
 	while (s[i])
@@ -67,8 +79,8 @@ static char	**fill_words(char **res, char const *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
-	int	words;
-	
+	int		words;
+
 	words = nb_words(s, c);
 	split = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!split)
