@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strchr.c                                           :+:      :+:    :+:   */
+/*   strmapi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 11:11:15 by eruellan          #+#    #+#             */
-/*   Updated: 2021/11/23 11:11:37 by eruellan         ###   ########.fr       */
+/*   Created: 2021/11/23 11:14:51 by eruellan          #+#    #+#             */
+/*   Updated: 2021/11/26 11:52:35 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		i;
-	char	*cast_s;
+	size_t			len;
+	char			*new;
+	unsigned int	i;
 
-	i = 0;
-	cast_s = (char *)s;
-	if (c == '\0')
-		return ("\0");
-	while (cast_s[i])
-	{
-		if (cast_s[i] == c)
-			return (&cast_s[i]);
-		i++;
-	}
-	return (NULL);
+	if (!s || !f)
+		return (NULL);
+	i = -1;
+	len = ft_strlen(s);
+	new = (char *)malloc(sizeof(char) * (len + 1));
+	if (!new)
+		return (NULL);
+	while (++i < len)
+		new[i] = (char)f(i, s[i]);
+	new[i] = '\0';
+	return (new);
 }

@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tolower.c                                          :+:      :+:    :+:   */
+/*   putstr_fd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 11:30:07 by eruellan          #+#    #+#             */
-/*   Updated: 2021/11/23 11:30:08 by eruellan         ###   ########.fr       */
+/*   Created: 2021/11/23 11:09:44 by eruellan          #+#    #+#             */
+/*   Updated: 2021/11/26 11:53:26 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int c)
+#include "libft.h"
+
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (c >= 65 && c <= 90)
-		c += 32;
-	return (c);
+	size_t	len;
+
+	if (!s || !fd)
+		return ;
+	len = ft_strlen(s);
+	write(fd, s, len);
 }
