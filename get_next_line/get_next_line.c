@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:14:22 by eruellan          #+#    #+#             */
-/*   Updated: 2021/11/26 15:34:52 by eruellan         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:57:44 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static char	*get_to_read(int fd, char *buf, char *to_read, int i)
 		buf[i] = '\0';
 		to_read = ft_strjoin(to_read, buf);
 		if (!to_read)
-			return (free_ligne(to_read, NULL));
+			return (free_ligne(buf, NULL));
 	}
 	free(buf);
 	return (to_read);
@@ -101,7 +101,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, buf, 0) == -1
 		|| (!prochain_n(to_read) && to_read))
+	{
+		free (buf);
 		return (free_ligne(to_read, NULL));
+	}
 	to_read = get_to_read(fd, buf, to_read, i);
 	line = get_line(to_read);
 	if (!prochain_n(line))
