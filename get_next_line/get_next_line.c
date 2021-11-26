@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:14:22 by eruellan          #+#    #+#             */
-/*   Updated: 2021/11/24 16:27:19 by eruellan         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:34:52 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static char	*free_ligne(char *to_free, char *retour)
 {
-	to_free = NULL;
 	free(to_free);
+	to_free = NULL;
 	return (retour);
 }
 
@@ -29,15 +29,14 @@ static char	*get_line(char *to_read)
 		return (NULL);
 	while (to_read[i] && to_read[i] != '\n')
 		i++;
+	if (to_read[i] == '\n')
+		i++;
 	substr = (char *)malloc(sizeof(char) * (i + 1));
 	if (!substr)
 		return (NULL);
-	i = 0;
-	while (to_read[i] && to_read[i] != '\n')
-	{
+	i = -1;
+	while (to_read[++i] && to_read[i] != '\n')
 		substr[i] = to_read[i];
-		i++;
-	}
 	if (to_read[i] == '\n')
 	{
 		substr[i] = '\n';
@@ -58,13 +57,10 @@ static char	*get_next(char *to_read)
 	while (to_read[i] && to_read[i] != '\n')
 		i++;
 	if (to_read[i] == '\0')
-	{
-		free (to_read);
-		return (NULL);
-	}
+		return (free_ligne(to_read, NULL));
 	next = (char *)malloc(sizeof(char) * (ft_strlen(to_read) - i + 1));
 	if (!next)
-		return (NULL);
+		return (free_ligne(to_read, NULL));
 	i++;
 	while (to_read[i + j])
 	{
@@ -105,13 +101,19 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, buf, 0) == -1
 		|| (!prochain_n(to_read) && to_read))
-		return (NULL);
+		return (free_ligne(to_read, NULL));
 	to_read = get_to_read(fd, buf, to_read, i);
 	line = get_line(to_read);
 	if (!prochain_n(line))
-		return (NULL);
+	{
+		free(to_read);
+		return (free_ligne(line, NULL));
+	}
 	to_read = get_next(to_read);
 	if (i == 0)
-		return ("");
+	{
+		free(line);
+		return (free_ligne(to_read, ""));
+	}
 	return (line);
 }

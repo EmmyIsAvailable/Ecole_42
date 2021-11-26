@@ -1,0 +1,6 @@
+>cle SSH
+	ssh-keygen -C 'email'
+	pas de nom de dossier
+	pas de mdp
+	cat fichier id_rsa.pub
+	copy paste la cle ssh
