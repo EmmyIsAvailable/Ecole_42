@@ -11,7 +11,7 @@ FLAGS	= -Wall -Wextra -Werror
 all:		${NAME}
 
 .c.o:		
-				gcc ${FLAGS} -c $< -o ${:.c=.o}
+				gcc ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
 				ar rc ${NAME} ${OBJS}
