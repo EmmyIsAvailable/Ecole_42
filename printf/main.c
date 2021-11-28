@@ -2,5 +2,8 @@
 #include <stdio.h>
 int	main()
 {
-	ft_printf("chou", "carotte", "betrave");
+	char c = 'f';
+	char	str[100] = "chou-fleur";
+	ft_printf("chou %s %c", str, c);
+	return (0);
 }
