@@ -1,44 +1,43 @@
 #include "printf.h"
 
-int	ft_which_char(const char c, va_list args)
-{
+int	ft_which_char(const char c, va_list args, int j)
+{	
 	if (c == 'c')
-		return (ft_print_c(va_arg(args, int)));
+		return (ft_print_c(args, j));
 	if (c == 's')
-		return (ft_print_str(va_arg(args, char *)));
+		return (ft_print_str(args, j));
 	if (c == 'p')
 		return (1);
 	if (c == 'x')
 		return (1);
 	if (c == 'X')
 		return (1);
-	if (c == 'd')
-		return (1);
-	if (c == 'i')
-		return (1);
+	if (c == 'd' || c == 'i')
+		return (ft_print_nb(args, j));
 	if (c == 'u')
-		return (1);
+		return (ft_print_unsigned_nb(args, j));
 	if (c == '%')
-		return (1);
+		return (ft_print_percent());
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_go_through_format(const char *format, va_list args)
 {
-	va_list	args;
-	int		i;
-	int		len;
+	int	i;
+	int	j;
+	int	len;
 
 	i = -1;
 	len = 0;
-	va_start(args, format);
+	j = 0;
 	while (format[++i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			len += ft_which_char(format[i], args);
-
+			if (format[i] != '%')
+				j++;
+			len += ft_which_char(format[i], args, j);
 		}
 		else
 		{
@@ -46,6 +45,16 @@ int	ft_printf(const char *format, ...)
 			len++;
 		}
 	}
+	return (len);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list	args;
+	int		len;
+
+	va_start(args, format);
+	len = ft_go_through_format(format, args);
 	va_end(args);
 	return (len);
 }

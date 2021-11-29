@@ -5,7 +5,10 @@
 # include "./libft/libft.h"
 
 int	ft_printf(const char *format, ...);
-int	ft_print_c(int c);
-int	ft_print_str(char *str);
+int	ft_print_c(va_list args, int j);
+int	ft_print_str(va_list args, int j);
+int	ft_print_percent(void);
+int	ft_print_nb(va_list args, int j);
+int	ft_print_unsigned_nb(va_list args, int j);
 
 #endif
