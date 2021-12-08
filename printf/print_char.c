@@ -1,23 +1,32 @@
-#include "printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_char.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/30 11:56:30 by eruellan          #+#    #+#             */
+/*   Updated: 2021/12/01 11:20:16 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_print_c(va_list args, int j)
+#include "ft_printf.h"
+
+int	ft_print_c(int c)
 {
-	int	curr_arg;
-
-	while (j--)
-		curr_arg = va_arg(args, int);
-	ft_putchar_fd(curr_arg, 1);
+	ft_putchar_fd(c, 1);
 	return (1);
 }
 
-int	ft_print_str(va_list args, int j)
+int	ft_print_str(char *str)
 {
-	char	*curr_arg;
-
-	while (j--)
-		curr_arg = va_arg(args, char *);
-	ft_putstr_fd(curr_arg, 1);
-	return (ft_strlen(curr_arg));
+	if (!str)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
+	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
 }
 
 int	ft_print_percent(void)
@@ -26,28 +35,35 @@ int	ft_print_percent(void)
 	return (1);
 }
 
-int	ft_print_nb(va_list args, int j)
+int	ft_print_nb(int nbr)
 {
-	int 	curr_arg;
-	char	*nb;
+	int	len;
 
-	while (j--)
-		curr_arg = va_arg(args, int);
-	nb = ft_itoa(curr_arg);
-	ft_putstr_fd(nb, 1);
-	free(nb);
-	return (ft_strlen(nb));
+	len = 1;
+	if (nbr == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", 1);
+		return (11);
+	}
+	if (nbr < 0)
+	{
+		ft_putchar_fd('-', 1);
+		nbr *= -1;
+		len++;
+	}
+	if (nbr >= 10)
+		len += ft_print_nb(nbr / 10);
+	ft_putchar_fd(nbr % 10 + 48, 1);
+	return (len);
 }
 
-int	ft_print_unsigned_nb(va_list args, int j)
+int	ft_print_unsigned_nb(unsigned int nbr)
 {
-	unsigned int 	curr_arg;
-	char			*nb;
+	int	len;
 
-	while (j--)
-		curr_arg = va_arg(args, unsigned int);
-	nb = ft_itoa(curr_arg);
-	ft_putstr_fd(nb, 1);
-	free(nb);
-	return (ft_strlen(nb));
+	len = 1;
+	if (nbr >= 10)
+		len += ft_print_nb(nbr / 10);
+	ft_putchar_fd(nbr % 10 + 48, 1);
+	return (len);
 }
