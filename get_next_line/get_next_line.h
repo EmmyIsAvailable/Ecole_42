@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:34:17 by eruellan          #+#    #+#             */
-/*   Updated: 2021/11/24 14:44:33 by eruellan         ###   ########.fr       */
+/*   Updated: 2021/12/03 13:36:09 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(char *str);
-char	*ft_strdup(char	*str);
 int		prochain_n(char *to_read);
+int		is_new_line(char *to_read);
 
 #endif
