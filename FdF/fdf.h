@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:50:18 by eruellan          #+#    #+#             */
-/*   Updated: 2021/12/20 12:17:47 by eruellan         ###   ########.fr       */
+/*   Updated: 2021/12/20 16:12:50 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_map
 	int	**map;
 	int	x;
 	int y;
+	int	col;
+	int	li;
 }	t_map;
 
 typedef struct s_img
@@ -47,6 +49,8 @@ typedef struct s_mlx
 	t_map	map;
 }	t_mlx;
 
-void	ft_aff_window(int fd);
+void	ft_aff_window(t_mlx *var);
+int		ft_parsing(int fd, t_mlx *var);
+int		ft_creation(char *av);
 
 #endif
