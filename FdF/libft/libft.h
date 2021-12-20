@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:34:17 by eruellan          #+#    #+#             */
-/*   Updated: 2021/12/20 11:47:55 by eruellan         ###   ########.fr       */
+/*   Updated: 2021/12/20 14:03:59 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		prochain_n(char *to_read);
 int		is_new_line(char *to_read);
 char	**ft_split(char *res, char c);
 int		ft_atoi(char *s);
+void	ft_bzero(void *s, size_t n);
 
 #endif
