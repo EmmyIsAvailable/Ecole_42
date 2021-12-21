@@ -6,12 +6,12 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 10:00:11 by eruellan          #+#    #+#             */
-/*   Updated: 2021/12/20 16:59:36 by eruellan         ###   ########.fr       */
+/*   Updated: 2021/12/21 10:43:54 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#include <stdio.h>
 int	main(int ac, char **av)
 {
 	if (ac == 2)

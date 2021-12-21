@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 10:05:25 by eruellan          #+#    #+#             */
-/*   Updated: 2021/12/20 17:04:02 by eruellan         ###   ########.fr       */
+/*   Updated: 2021/12/21 13:55:48 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,26 @@ int	close_win(t_mlx *var)
 	exit (0);
 }
 
-void	my_pixel_put(t_img *img, int x, int y, int color)
+void	my_pixel_put(t_mlx *var, int x, int y)
 {
-	char	*dst;
-
-	dst = img->addr + (y * img->size_l + x * (img->bpp / 8));
-	*(unsigned int *)dst = color;
+	if (x > 0 && x < var->win_len && y > 0 && y < var->win_width)
+	{
+		var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8))] = var->color.red;
+		var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 1] = var->color.green;
+		var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 2] = var->color.blue;
+	}
 }
 
 void	ft_aff_map(t_mlx *var)
 {
-	var->map.y = 0;
-	//printf("%d, %d", var->map.li, var->map.col);
-	while (var->map.map[var->map.y][var->map.x])
-	{
-		
-		var->map.x = 0;
-		while (var->map.map[var->map.y][var->map.x])
-		{
-			my_pixel_put(&var->img, var->map.x, var->map.y, 0x0FF0000);
-			mlx_pixel_put(var->mlx, var->win, var->map.x, var->map.y, 0x00FF0000);
-			var->map.x++;
-		}
-		var->map.y++;
-	}
+	ft_draw_col(var);
 }
 
 void	ft_aff_window(t_mlx *var)
 {
 	var->mlx = mlx_init();
-	var->win = mlx_new_window(var->mlx, 1920, 1080, "fdf");
-	var->img.img = mlx_new_image(var->mlx, 1920, 1080);
+	var->win = mlx_new_window(var->mlx, var->win_len, var->win_width, "fdf");
+	var->img.img = mlx_new_image(var->mlx, var->win_len, var->win_width);
 
 	var->img.addr = mlx_get_data_addr(var->img.img, &var->img.bpp, &var->img.size_l, &var->img.endian);
 

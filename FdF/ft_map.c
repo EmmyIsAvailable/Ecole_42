@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:33:03 by eruellan          #+#    #+#             */
-/*   Updated: 2021/12/20 17:09:15 by eruellan         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:22:00 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ int	**ft_newtab(int x, int y)
 	int	*ligne;
 
 	i = 0;
-	tab = (int **)malloc(sizeof(int) * y);
+	tab = (int **)malloc(sizeof(tab) * y);
 	if (!tab)
-		return (0);
-	ligne = (int *)malloc(sizeof(int) * (x * y));
+		return (NULL);
+	ligne = (int *)malloc(sizeof(ligne) * (x * y));
 	if (!ligne)
-		return (0);
+		return (NULL);
 	while (i < y)
 	{
 		tab[i] = &ligne[i * x];
@@ -102,8 +102,12 @@ int	ft_creation(char *av)
 		return (-1);
 	ft_parsing(fd, &var);
 	close (fd);
-	//printf("%d", var.map.map[var.map.y][var.map.x]);
-	//ft_aff_window(&var);
+	ft_size_win(&var);
+	ft_inbetween(&var);
+	var.color.red = 255;
+	var.color.green = 255;
+	var.color.blue = 255;
+	ft_aff_window(&var);
 	ft_bzero(&var, sizeof(t_mlx));
 	return (0);
 }
