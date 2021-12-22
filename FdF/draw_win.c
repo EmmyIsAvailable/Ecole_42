@@ -43,7 +43,7 @@ void	ft_draw_col(t_mlx *var)
 
 void	ft_draw_one_li(t_mlx *var)
 {
-	while (var->point.x < (var->map.col * var->point.space))
+	while (var->point.x < ((var->map.col - 1) * var->point.space))
 	{
 		li_pt_next(var);
 		ft_bresenham(var);
@@ -56,5 +56,15 @@ void	ft_draw_one_li(t_mlx *var)
 
 void	ft_draw_li(t_mlx *var)
 {
-	
+	var->map.y = 0;
+	var->point.y = 0;
+	while (var->point.y < (var->map.li * var->point.space))
+	{
+		var->point.x = 0;
+		var->map.x = 0;
+		col_pt_begin(var);
+		ft_draw_one_li(var);
+		var->map.y++;
+		var->point.y += var->point.space;
+	}	
 }

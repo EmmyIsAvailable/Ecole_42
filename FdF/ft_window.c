@@ -32,6 +32,7 @@ void	my_pixel_put(t_mlx *var, int x, int y)
 void	ft_aff_map(t_mlx *var)
 {
 	ft_draw_col(var);
+	ft_draw_li(var);
 }
 
 void	ft_aff_window(t_mlx *var)

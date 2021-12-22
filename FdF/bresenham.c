@@ -33,11 +33,25 @@ void	li_pt_next(t_mlx *var)
 
 void	ft_bresenham(t_mlx *var)
 {
+	var->point.dx = (abs(var->point.x2 - var->point.x1));
+	var->point.stepx = (var->point.x2 > var->point.x1 ? 1 : -1);
+	var->point.dy = (abs(var->point.y2 - var->point.y1));
+	var->point.stepy = (var->point.y2 > var->point.y1 ? 1 : -1);
+	var->point.e = (var->point.dx > var->point.dy ? var->point.dx : var->point.dy) / (-2);
 	while (1)
 	{
 		my_pixel_put(var, var->point.x1, var->point.y1);
 		if (var->point.x1 == var->point.x2 && var->point.y1 == var->point.y2)
 			break ;
-		var->point.y1++;
+		if (var->point.dx >= var->point.e)
+		{
+			var->point.e -= var->point.dy;
+			var->point.x1 += var->point.stepx;
+		}
+		if (var->point.dy >= var->point.e)
+		{
+			var->point.e -= var->point.dx;
+			var->point.y1 += var->point.stepy;
+		}
 	}
 }

@@ -28,6 +28,9 @@ fclean:		clean
 memory:		${OBJS}
 			${CC} ${OBJS} -fsanitize=address -g3 -lmlx -framework openGL -framework AppKit -o ${NAME}
 
+linux:		${OBJS}
+			${CC} ${OBJS} -lmlx -lXext -lX11 -o ${NAME}
+
 re:		fclean all
 
 .PHONY:		all clean fclean re

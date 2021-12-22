@@ -57,6 +57,11 @@ typedef struct s_point
 	int	y1;
 	int	x2;
 	int	y2;
+	int	dx;
+	int	dy;
+	int	e;
+	int	stepx;
+	int	stepy;
 	int	pos;
 	int	space;
 
