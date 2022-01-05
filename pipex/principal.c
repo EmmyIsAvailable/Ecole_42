@@ -3,13 +3,24 @@
 void	ft_exec(char *av, t_data *data)
 {
 	char	**env_path;
-	char	**my_path;
+	char	*binary;
 	char	**cmd;
 
 	cmd = ft_split(av, " ");
 	if (!cmd)
 		ft_error("split failed or error occured getting command");
 	env_path = get_envp(data);
+	binary = get_binary(cmd[0], env_path);
+	if (!binary)
+		ft_error("error occured getting binary file in exec");
+	//free env_path
+	if (execve(binary, cmd, data->envp) == -1)
+	{
+		free (binary);
+		//free env_path
+		//free cmd
+		ft_error("Error");
+	}
 }
 
 void	child_process(t_data *data)
@@ -20,6 +31,7 @@ void	child_process(t_data *data)
 		ft_error("Error");
 	close (data->fd[0]);
 	close (data->infile);
+	ft_exec(data->av[1], data);
 }
 
 void	parent_process(t_data *data)
@@ -33,7 +45,7 @@ void	parent_process(t_data *data)
 		ft_error("Error");
 	close (data->fd[1]);
 	close (data->outfile);
-
+	ft_exec(data->av[2], data);
 }
 
 void	ft_pipex(t_data *data)

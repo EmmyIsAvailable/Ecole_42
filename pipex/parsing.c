@@ -33,3 +33,29 @@ char	**get_envp(t_data *data)
 		ft_error("split failed or error occured getting envp");
 	return (paths);
 }
+
+char	*get_binary(char *cmd, char **env_path)
+{
+	char	*tmp;
+	char	*cmd_path;
+	int	i;
+
+	i = -1;
+	tmp = NULL;
+	cmd_path = NULL;
+	while (env_path[++i])
+	{
+		tmp = ft_strjoin(env_path[i], "/");
+		if (!tmp)
+			ft_error("tmp join failed");
+		cmd_path = ft_strjoin(tmp, cmd);
+		if (!cmd_path)
+			ft_error("cmd_path join failed");
+		free(tmp);
+		if (access(cmd_path, F_OK) == 0)
+			return (cmd_path);
+		free(cmd_path);
+	}
+	ft_error("error occured getting binary file in parsing");
+	return (NULL);
+}
