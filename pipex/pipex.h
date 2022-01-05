@@ -3,6 +3,9 @@
 
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/types.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct s_data
 {
@@ -13,5 +16,8 @@ typedef struct s_data
 	int	infile;
 	int	fd[2];
 }	t_data;
+
+void	pipex(t_data *data);
+void	ft_error(char *str);
 
 #endif

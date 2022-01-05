@@ -1,5 +1,11 @@
 #include "pipex.h"
 
+void	ft_error(char *str)
+{
+	perror(str);
+	exit(EXIT_FAILURE)
+}
+
 void	arg_to_data(int ac, char **av, char **envp)
 {
 	data->ac = ac;
@@ -25,7 +31,7 @@ int	main(int ac, char **av, char **envp)
 		data.outfile = open(av[4], O_RDWR | O_CREAT | O_TRUNC, 644);
 		if (data.infile < 0 || data.outfile < 0)
 			return (-1);
-		pipex(f1, f2, av, envp);
 	}
+	pipex(data);
 	return (0);
 }
