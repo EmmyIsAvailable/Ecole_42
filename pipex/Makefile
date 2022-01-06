@@ -1,6 +1,7 @@
 NAME	= pipex
 
-SRCS	= main.c ./libft/ft_putstr_fd.c ./libft/ft_strlen.c principal.c parsing.c
+SRCS	= main.c ./libft/ft_putstr_fd.c ./libft/ft_strlen.c principal.c parsing.c ./libft/ft_split.c \
+	  ./libft/ft_strnstr.c ./libft/ft_strjoin.c ./libft/ft_substr.c
 
 OBJS	= ${SRCS:.c=.o}
 

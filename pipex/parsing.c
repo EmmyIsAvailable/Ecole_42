@@ -9,7 +9,7 @@ char	*search_envp(t_data *data)
 	path = NULL;
 	while (data->envp[++i])
 	{
-		path = ft_strnstr(envp[i], "PATH=", ft_strlen(envp[i]));
+		path = ft_strnstr(data->envp[i], "PATH=", ft_strlen(data->envp[i]));
 		if (path)
 		{
 			path = ft_substr(path, 5, ft_strlen(path));
@@ -27,7 +27,7 @@ char	**get_envp(t_data *data)
 	char	**paths;
 
 	env_path = search_envp(data);
-	paths = ft_split(env_path, ":");
+	paths = ft_split(env_path, ':');
 	free (env_path);
 	if (!paths)
 		ft_error("split failed or error occured getting envp");
