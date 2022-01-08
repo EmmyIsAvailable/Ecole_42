@@ -37,3 +37,18 @@ t_stack	*ft_fill_stack(t_var *arg)
 	}
 	return (arg->a);
 }
+
+int	ft_size_stack(t_var *arg)
+{
+	int	i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = arg->a;
+	while (tmp)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}

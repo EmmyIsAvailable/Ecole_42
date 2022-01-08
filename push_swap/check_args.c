@@ -50,3 +50,18 @@ int	check_numbers(t_var *arg)
 	}
 	return (1);
 }
+
+int	check_sorted(t_var *arg)
+{
+	t_stack	*tmp;
+
+	tmp = arg->a;
+	while (tmp && tmp->next)
+	{
+		if (tmp->next && (tmp->val < tmp->next->val))
+			tmp = tmp->next;
+		else
+			return (0);
+	}
+	return (1);
+}

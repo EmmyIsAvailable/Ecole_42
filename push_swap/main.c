@@ -33,6 +33,9 @@ void	push_swap(t_var *arg)
 	if (!check_doubles(arg) || !check_numbers(arg))
 		ft_free_tab(arg->tab);
 	arg->a = ft_fill_stack(arg);
+	if (!check_sorted(arg))
+		ft_error("Error : list of arguments already sorted\n", 1);
+	arg->len = ft_size_stack(arg);
 }
 
 int	main(int ac, char **av)
