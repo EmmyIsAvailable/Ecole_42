@@ -20,7 +20,7 @@ void	ft_choice2(t_var *arg, int a)
 	if (a == 5)
 	{
 		ft_putstr_fd("pb\n", 1);
-		ft_push(arg->b);
+		ft_push(arg->b, arg->a);
 	}
 	if (a == 6)
 	{
@@ -68,7 +68,7 @@ void	ft_choice(t_var *arg, int a)
 	if (a == 4)
 	{
 		ft_putstr_fd("pa\n", 1);
-		ft_push(arg->a);
+		ft_push(arg->a, arg->b);
 	}
 	else
 		ft_choice2(arg, a);

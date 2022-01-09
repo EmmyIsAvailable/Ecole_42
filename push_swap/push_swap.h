@@ -52,4 +52,7 @@ int		ft_is_in_scope(char c);
 t_stack		*ft_fill_stack(t_var *arg);
 int		ft_size_stack(t_var *arg);
 
+/*operations*/
+void		ft_push(t_stack *a, t_stack *b);
+
 #endif

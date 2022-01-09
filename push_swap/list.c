@@ -16,6 +16,19 @@ void	ft_lst_add_back(t_stack **front, t_stack *new)
 	}
 }
 
+void	ft_lst_add_front(t_stack **front, t_stack *new)
+{
+	t_stack *tmp;
+
+	if (!(*front))
+		*front = new;
+	else
+	{
+		tmp = *front->next;
+		
+	}
+}
+
 
 t_stack	*ft_fill_stack(t_var *arg)
 {

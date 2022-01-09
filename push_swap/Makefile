@@ -2,7 +2,7 @@ NAME	= push_swap
 
 SRCS	= main.c check_args.c utils.c ./libft/ft_isdigit.c ./libft/ft_strlen.c \
 	  ./libft/ft_strncmp.c ./libft/ft_putstr_fd.c ./libft/ft_split.c ./libft/ft_atoi.c \
-	  list.c
+	  list.c op_push.c action.c
 
 OBJS	= ${SRCS:.c=.o}
 
