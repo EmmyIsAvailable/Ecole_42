@@ -6,12 +6,11 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:33:03 by eruellan          #+#    #+#             */
-/*   Updated: 2021/12/21 16:22:00 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:23:41 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 int	ft_nb_col_li(char *av, t_mlx *var)
 {
@@ -101,13 +100,13 @@ int	ft_creation(char *av)
 	if (fd == -1)
 		return (-1);
 	ft_parsing(fd, &var);
-	close (fd);
 	ft_size_win(&var);
 	ft_inbetween(&var);
 	var.color.red = 255;
 	var.color.green = 255;
 	var.color.blue = 255;
 	ft_aff_window(&var);
+	close(fd);
 	ft_bzero(&var, sizeof(t_mlx));
 	return (0);
 }

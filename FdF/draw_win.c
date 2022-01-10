@@ -6,12 +6,11 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:23:55 by eruellan          #+#    #+#             */
-/*   Updated: 2021/12/21 16:21:52 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:24:14 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void	ft_draw_one_col(t_mlx *var)
 {
