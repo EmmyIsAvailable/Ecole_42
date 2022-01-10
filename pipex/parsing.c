@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/10 10:10:51 by eruellan          #+#    #+#             */
+/*   Updated: 2022/01/10 10:10:53 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 char	*search_envp(t_data *data)
 {
 	char	*path;
-	int	i;
+	int		i;
 
 	i = -1;
 	path = NULL;
@@ -38,7 +50,7 @@ char	*get_binary(char *cmd, char **env_path)
 {
 	char	*tmp;
 	char	*cmd_path;
-	int	i;
+	int		i;
 
 	i = -1;
 	tmp = NULL;

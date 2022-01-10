@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/10 10:08:40 by eruellan          #+#    #+#             */
+/*   Updated: 2022/01/10 10:08:57 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	**ft_free_tab(char **data)
@@ -34,7 +46,7 @@ t_data	arg_to_data(int ac, char **av, char **envp)
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
-	int	i;
+	int		i;
 
 	i = 1;
 	data = arg_to_data(ac, av, envp);

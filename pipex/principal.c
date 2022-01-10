@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   principal.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/10 10:11:48 by eruellan          #+#    #+#             */
+/*   Updated: 2022/01/10 10:11:50 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	ft_exec(char *av, t_data *data)
@@ -6,7 +18,7 @@ void	ft_exec(char *av, t_data *data)
 	char	*binary;
 	char	**cmd;
 
-	cmd = ft_split(av,' ');
+	cmd = ft_split(av, ' ');
 	if (!cmd)
 		ft_error("split failed or error occured getting command");
 	env_path = get_envp(data);
