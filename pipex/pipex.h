@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 10:12:14 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/10 10:13:05 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/10 13:57:22 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ typedef struct s_data
 	int		outfile;
 	int		infile;
 	int		fd[2];
-	pid_t	pid;
+	pid_t	child1;
+	pid_t	child2;
 }	t_data;
 
-void	pipex(t_data *data);
+void	pipex(t_data *data, char *cmd1, char *cmd2);
 void	ft_error(char *str);
 char	**get_envp(t_data *data);
 char	*get_binary(char *cmd, char **env_path);

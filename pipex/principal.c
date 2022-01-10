@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 10:11:48 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/10 10:11:50 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/10 15:08:34 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_exec(char *av, t_data *data)
 	}
 }
 
-void	child_process(t_data *data)
+void	child1_process(t_data *data, char *cmd)
 {
 	if ((dup2(data->infile, STDIN_FILENO)) == -1)
 		ft_error("Error");
@@ -43,31 +43,43 @@ void	child_process(t_data *data)
 		ft_error("Error");
 	close (data->fd[0]);
 	close (data->infile);
-	ft_exec(data->av[2], data);
+	ft_exec(cmd, data);
 }
 
-void	parent_process(t_data *data)
+void	child2_process(t_data *data, char *cmd)
 {
 	if ((dup2(data->outfile, STDOUT_FILENO)) == -1)
 		ft_error("Error");
 	if ((dup2(data->fd[0], STDIN_FILENO)) == -1)
 		ft_error("Error");
 	close (data->fd[1]);
-	if (waitpid(data->pid, NULL, 0) == -1)
-		ft_error("Error waitpid");
 	close (data->outfile);
-	ft_exec(data->av[3], data);
+	ft_exec(cmd, data);
 }
 
-void	pipex(t_data *data)
+void	parent_process(t_data *data)
+{
+	close(data->fd[0]);
+	close(data->fd[1]);
+	if (waitpid(data->child1, NULL, 0) == -1)
+		ft_error("Error waitpid");
+	if (waitpid(data->child2, NULL, 0) == -1)
+		ft_error("Error waitpid");
+}
+
+void	pipex(t_data *data, char *cmd1, char *cmd2)
 {
 	if (pipe(data->fd) == -1)
 		exit(EXIT_FAILURE);
-	data->pid = fork();
-	if (data->pid == -1)
+	data->child1 = fork();
+	if (data->child1 == -1)
 		exit(EXIT_FAILURE);
-	if (data->pid == 0)
-		child_process(data);
-	else
-		parent_process(data);
+	if (data->child1 == 0)
+		child1_process(data, cmd1);
+	data->child2 = fork();
+	if (data->child2 == -1)
+		exit(EXIT_FAILURE);
+	if (data->child2 == 0)
+		child2_process(data, cmd2);
+	parent_process(data);
 }
