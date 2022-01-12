@@ -1,7 +1,7 @@
 NAME	= fdf 
 
 SRCS	= main.c ft_window.c ./libft/get_next_line.c ./libft/get_next_line_utils.c ./libft/ft_split.c \
-			./libft/ft_atoi.c ft_map.c ./libft/ft_bzero.c parameters.c draw_win.c bresenham.c
+			./libft/ft_atoi.c ft_map.c ./libft/ft_bzero.c parameters.c draw_win.c bresenham.c hook_details.c
 
 OBJS	= ${SRCS:.c=.o}
 

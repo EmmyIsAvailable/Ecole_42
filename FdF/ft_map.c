@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:33:03 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/10 16:23:41 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/11 16:34:12 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int	ft_creation(char *av)
 	var.color.red = 255;
 	var.color.green = 255;
 	var.color.blue = 255;
+	var.point.left_right = var.win_len / 4;
+	var.point.up_down = var.win_width / 4;
 	ft_aff_window(&var);
 	close(fd);
 	ft_bzero(&var, sizeof(t_mlx));
