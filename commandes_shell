@@ -4,3 +4,53 @@
 	pas de mdp
 	cat fichier id_rsa.pub
 	copy paste la cle ssh
+	
+>if open(wrong_file) == -1
+	perror(wrong_file);
+	>> wrongr_file: <message d'erreur approprié>
+
+>sur LINUX:
+pour voir les fd toujours ouvert å la fin du programme
+
+1 placer une boucle infinie juste avant que le programme quitte
+
+2 lancer le programme
+
+3 ouvrir un autre terminal
+
+4 taper `ps a` pour voir tous les processus
+
+5 récupérer le PID du programme
+
+6 faire ls /proc/<PID>/fd
+
+il y a un dossier par fd ouvert, portant le numéro
+
+BONUS (a verifier) faire `lsof /proc/<PID>/fd`
+
+----
+
+1 compiler le programme avec -g
+
+2 lldb a.out
+
+3 placer un point d'arret (breakpoint) sur une fonction
+	b nom_de_la_fonction
+	b nom_du_fichier:numbero_ligne
+
+4 lancement
+	run argument_du_programme
+
+5 les commandes de base
+
+passer a la ligne suivante
+	n next
+
+afficher le contenu d'une variable
+	p variable
+
+p str
+-> affiche le pointeur et son contenu
+
+p str[0]
+-> affiche le caractère
