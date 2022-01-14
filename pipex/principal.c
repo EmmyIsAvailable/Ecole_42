@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 10:11:48 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/10 15:08:34 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/12 13:42:15 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,26 @@ void	ft_exec(char *av, t_data *data)
 
 	cmd = ft_split(av, ' ');
 	if (!cmd)
-		ft_error("split failed or error occured getting command");
+		ft_error("Error : split failed or command not found\n");
 	env_path = get_envp(data);
 	binary = get_binary(cmd[0], env_path);
-	if (!binary)
-		ft_error("error occured getting binary file in exec");
 	ft_free_tab(env_path);
+	if (!binary)
+		ft_error("Error : getting binary file failed or command not found\n");
 	if (execve(binary, cmd, data->envp) == -1)
 	{
 		free (binary);
-		ft_free_tab(env_path);
 		ft_free_tab(cmd);
-		ft_error("Error");
+		ft_error("Error\n");
 	}
 }
 
 void	child1_process(t_data *data, char *cmd)
 {
 	if ((dup2(data->infile, STDIN_FILENO)) == -1)
-		ft_error("Error");
+		ft_error("Error\n");
 	if ((dup2(data->fd[1], STDOUT_FILENO)) == -1)
-		ft_error("Error");
+		ft_error("Error\n");
 	close (data->fd[0]);
 	close (data->infile);
 	ft_exec(cmd, data);
@@ -49,9 +48,9 @@ void	child1_process(t_data *data, char *cmd)
 void	child2_process(t_data *data, char *cmd)
 {
 	if ((dup2(data->outfile, STDOUT_FILENO)) == -1)
-		ft_error("Error");
+		ft_error("Error\n");
 	if ((dup2(data->fd[0], STDIN_FILENO)) == -1)
-		ft_error("Error");
+		ft_error("Error\n");
 	close (data->fd[1]);
 	close (data->outfile);
 	ft_exec(cmd, data);
@@ -62,9 +61,9 @@ void	parent_process(t_data *data)
 	close(data->fd[0]);
 	close(data->fd[1]);
 	if (waitpid(data->child1, NULL, 0) == -1)
-		ft_error("Error waitpid");
+		ft_error("Error waitpid\n");
 	if (waitpid(data->child2, NULL, 0) == -1)
-		ft_error("Error waitpid");
+		ft_error("Error waitpid\n");
 }
 
 void	pipex(t_data *data, char *cmd1, char *cmd2)

@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 10:10:51 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/10 14:00:11 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/12 12:31:10 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*search_envp(t_data *data)
 		{
 			path = ft_substr(path, 5, ft_strlen(path));
 			if (!path)
-				ft_error("Error");
+				ft_error("Error\n");
 			return (path);
 		}
 	}
@@ -42,7 +42,7 @@ char	**get_envp(t_data *data)
 	paths = ft_split(env_path, ':');
 	free (env_path);
 	if (!paths)
-		ft_error("split failed or error occured getting envp");
+		ft_error("Error : split failed or getting envp failed\n");
 	return (paths);
 }
 
@@ -59,15 +59,15 @@ char	*get_binary(char *cmd, char **env_path)
 	{
 		tmp = ft_strjoin(env_path[i], "/");
 		if (!tmp)
-			ft_error("tmp join failed");
+			ft_error("Error : tmp join failed\n");
 		cmd_path = ft_strjoin(tmp, cmd);
 		if (!cmd_path)
-			ft_error("cmd_path join failed");
+			ft_error("Error : cmd_path join failed\n");
 		free(tmp);
 		if (access(cmd_path, F_OK) == 0)
 			return (cmd_path);
 		free(cmd_path);
 	}
-	ft_error("error occured getting binary file in parsing");
+	ft_error("Error : command not found\n");
 	return (NULL);
 }
