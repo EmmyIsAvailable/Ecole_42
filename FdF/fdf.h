@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:50:18 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/11 15:45:55 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/14 13:31:04 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	my_pixel_put(t_mlx *var, int x, int y);
 void	col_pt_begin(t_mlx *var);
 void	col_pt_next(t_mlx *var);
 void	ft_draw_li(t_mlx *var);
+void	li_pt_begin(t_mlx *var);
 void	li_pt_next(t_mlx *var);
 void	ft_bresenham(t_mlx *var);
 void	ft_zoom(int keycode, t_mlx *var);

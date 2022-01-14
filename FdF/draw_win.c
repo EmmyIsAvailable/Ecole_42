@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:23:55 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/11 15:18:31 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/14 13:33:20 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_draw_li(t_mlx *var)
 	{
 		var->point.x = 0;
 		var->map.x = 0;
-		col_pt_begin(var);
+		li_pt_begin(var);
 		ft_draw_one_li(var);
 		var->map.y++;
 		var->point.y += var->point.space;
