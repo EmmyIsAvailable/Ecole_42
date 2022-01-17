@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:50:18 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/17 11:55:38 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/17 16:54:47 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ void	ft_bresenham(t_mlx *var);
 void	ft_zoom(int keycode, t_mlx *var);
 void	ft_move(int keycode, t_mlx *var);
 void	ft_altitude(int keycode, t_mlx *var);
+void	ft_colors(t_mlx *var);
 
 #endif

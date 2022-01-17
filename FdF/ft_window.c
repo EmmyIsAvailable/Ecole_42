@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 10:05:25 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/17 13:12:03 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/17 16:09:26 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,40 @@ int	close_win(t_mlx *var)
 }
 
 void	my_pixel_put(t_mlx *var, int x, int y)
-{
+{	
 	if (x > 0 && x < var->win_len && y > 0 && y < var->win_width)
 	{
-		var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8))] = var->color.red;
-		var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 1] = var->color.green;
-		var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 2] = var->color.blue;
-	}
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8))] = var->color.red;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 1] = var->color.green;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 2] = var->color.blue;
+	}/*
+	if (x > 0 && x < var->win_len && y > 0 && y < var->win_width)
+	{
+		if (var->map.map[var->map.x][var->map.y] < 0)
+		{
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8))] = 100;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 1] = 100;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 2] = 90;
+		}
+		else if (var->map.map[var->map.x][var->map.y] < 5)
+		{
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8))] = 90;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 1] = 90;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 2] = 90;
+		}	
+		else if (var->map.map[var->map.x][var->map.y] < 20)
+		{
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8))] = 90;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 1] = 100;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 2] = 100;
+		}
+		else
+		{
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8))] = 90;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 1] = 0;
+			var->img.addr[(y * var->img.size_l) + (x * (var->img.bpp / 8)) + 2] = 0;
+		}
+	}*/
 }
 
 int	ft_expose_hook(t_mlx *var)

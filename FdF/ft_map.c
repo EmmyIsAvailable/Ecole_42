@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:33:03 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/17 13:11:07 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/17 16:54:58 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,34 @@ int	ft_parsing(int fd, t_mlx *var)
 	return (0);
 }
 
+void	ft_colors(t_mlx *var)
+{
+	if (var->map.map[var->map.y][var->map.x] < 0)
+	{
+		var->color.red = 0;
+		var->color.green = 0 - 4 * var->map.map[var->map.y][var->map.x];
+		var->color.blue = 255 + 4 * var->map.map[var->map.y][var->map.x];
+	}
+	else if (var->map.map[var->map.y][var->map.x] < 10)
+	{
+		var->color.red = 160 + var->map.map[var->map.y][var->map.x] * 9;
+		var->color.green = 0 + 3 * var->map.map[var->map.y][var->map.x];
+		var->color.blue = 180 - var->map.map[var->map.y][var->map.x] * 10;
+	}
+	if (var->map.map[var->map.y][var->map.x] < 20)
+	{
+		var->color.red = 60 + var->map.map[var->map.y][var->map.x] * 9;
+		var->color.green = 85 + var->map.map[var->map.y][var->map.x] * 8;
+		var->color.blue = 7 * var->map.map[var->map.y][var->map.x];
+	}	
+	else
+	{
+		var->color.red = 255 - var->map.map[var->map.y][var->map.x];
+		var->color.green = 0 + var->map.map[var->map.y][var->map.x];
+		var->color.blue = 0;
+	}
+}
+
 int	ft_creation(char *av)
 {
 	t_mlx	var;
@@ -102,10 +130,7 @@ int	ft_creation(char *av)
 	ft_parsing(fd, &var);
 	ft_size_win(&var);
 	ft_inbetween(&var);
-	var.color.red = 255;
-	var.color.green = 255;
-	var.color.blue = 255;
-	var.point.alt = -5;
+	var.point.alt = var.point.space;
 	var.point.left_right = var.win_len / 4;
 	var.point.up_down = var.win_width / 4;
 	ft_aff_window(&var);
