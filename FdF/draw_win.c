@@ -6,12 +6,12 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:23:55 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/14 13:33:20 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/17 13:10:05 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#include <stdio.h>
 void	ft_draw_one_col(t_mlx *var)
 {
 	while (var->point.y < ((var->map.li - 1) * var->point.space))

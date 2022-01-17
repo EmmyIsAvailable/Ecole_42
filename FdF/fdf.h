@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:50:18 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/14 13:31:04 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/17 11:55:38 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define LEFT 123
 # define RIGHT 124
 # define ESC 53
+# define PLUS 24
+# define MINUS 27
 
 typedef struct s_map
 {
@@ -73,7 +75,7 @@ typedef struct s_point
 	int	e;
 	int	stepx;
 	int	stepy;
-	//int	pos;
+	int	alt;
 	int	space;
 	int	left_right;
 	int	up_down;
@@ -107,5 +109,6 @@ void	li_pt_next(t_mlx *var);
 void	ft_bresenham(t_mlx *var);
 void	ft_zoom(int keycode, t_mlx *var);
 void	ft_move(int keycode, t_mlx *var);
+void	ft_altitude(int keycode, t_mlx *var);
 
 #endif

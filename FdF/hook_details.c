@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:14:24 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/11 14:39:30 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/17 13:12:29 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ void	ft_move(int keycode, t_mlx *var)
 		var->point.left_right -= 40;
 	else if (keycode == RIGHT)
 		var->point.left_right += 40;
+}
+
+void	ft_altitude(int keycode, t_mlx *var)
+{
+	if (keycode == PLUS)
+		var->point.alt += 5;
+	else if (keycode == MINUS)
+		var->point.alt -= 5;
 }

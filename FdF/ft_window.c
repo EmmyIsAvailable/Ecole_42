@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 10:05:25 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/11 16:34:46 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/17 13:12:03 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	ft_key_hook(int keycode, t_mlx *var)
 		ft_zoom(keycode, var);
 	else if (keycode == UP || keycode == DOWN || keycode == RIGHT || keycode == LEFT)
 		ft_move(keycode, var);
+	else if (keycode == PLUS || keycode == MINUS)
+		ft_altitude(keycode, var);
 	ft_expose_hook(var);
 	return (0);
 }
