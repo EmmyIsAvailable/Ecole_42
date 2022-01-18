@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 09:50:18 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/17 16:54:47 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/18 14:27:51 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,24 @@
 # include <fcntl.h>
 # include <string.h>
 # include <errno.h>
+# include <stdio.h>
 # include <math.h>
 # include <unistd.h>
 
 # define NUMPAD_PLUS 69
 # define NUMPAD_MINUS 78
+
 # define R 15
 # define G 5
 # define B 11
+
 # define UP 126
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
+
 # define ESC 53
+
 # define PLUS 24
 # define MINUS 27
 
@@ -40,7 +45,7 @@ typedef struct s_map
 {
 	int	**map;
 	int	x;
-	int y;
+	int	y;
 	int	col;
 	int	li;
 }	t_map;
@@ -111,5 +116,6 @@ void	ft_zoom(int keycode, t_mlx *var);
 void	ft_move(int keycode, t_mlx *var);
 void	ft_altitude(int keycode, t_mlx *var);
 void	ft_colors(t_mlx *var);
+void	ft_point_bresenham(t_mlx *var);
 
 #endif

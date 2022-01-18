@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:33:03 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/17 16:54:58 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/18 14:29:38 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,10 @@ int	ft_nb_col_li(char *av, t_mlx *var)
 			var->map.col++;
 		i++;
 	}
-	if (line)
+	while (line)
 	{
 		var->map.li++;
-		free(line);
-	}
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		var->map.li++;
+		line = get_next_line(fd);
 		free(line);
 	}
 	close (fd);
@@ -66,55 +62,55 @@ int	**ft_newtab(int x, int y)
 
 int	ft_parsing(int fd, t_mlx *var)
 {
-	char 	*line;
+	char	*line;
 	char	**split_line;
 
-	if (!(var->map.map = ft_newtab(var->map.col, var->map.li)))
+	var->map.map = ft_newtab(var->map.col, var->map.li);
+	if (!var->map.map)
 		return (-1);
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line)
 	{
 		var->map.x = 0;
 		split_line = ft_split(line, ' ');
 		while (split_line[var->map.x] != NULL)
 		{
-			var->map.map[var->map.y][var->map.x] =
-				ft_atoi(split_line[var->map.x]);
+			var->map.map[var->map.y][var->map.x]
+				= ft_atoi(split_line[var->map.x]);
 			free(split_line[var->map.x]);
 			var->map.x++;
 		}
 		free(split_line);
 		free(line);
 		var->map.y++;
+		line = get_next_line(fd);
 	}
 	return (0);
 }
 
 void	ft_colors(t_mlx *var)
 {
-	if (var->map.map[var->map.y][var->map.x] < 0)
+	int	value;
+
+	value = var->map.map[var->map.y][var->map.x];
+	if (value > 0)
 	{
-		var->color.red = 0;
-		var->color.green = 0 - 4 * var->map.map[var->map.y][var->map.x];
-		var->color.blue = 255 + 4 * var->map.map[var->map.y][var->map.x];
+		var->color.red = 130;
+		var->color.green = 180;
+		var->color.blue = 255;
 	}
-	else if (var->map.map[var->map.y][var->map.x] < 10)
+	else if (value <= 0 && value > -5)
 	{
-		var->color.red = 160 + var->map.map[var->map.y][var->map.x] * 9;
-		var->color.green = 0 + 3 * var->map.map[var->map.y][var->map.x];
-		var->color.blue = 180 - var->map.map[var->map.y][var->map.x] * 10;
+		var->color.red = 255;
+		var->color.green = 255;
+		var->color.blue = 255;
 	}
-	if (var->map.map[var->map.y][var->map.x] < 20)
+	else if (value <= -5)
 	{
-		var->color.red = 60 + var->map.map[var->map.y][var->map.x] * 9;
-		var->color.green = 85 + var->map.map[var->map.y][var->map.x] * 8;
-		var->color.blue = 7 * var->map.map[var->map.y][var->map.x];
+		var->color.red = 255;
+		var->color.green = 190;
+		var->color.blue = 190;
 	}	
-	else
-	{
-		var->color.red = 255 - var->map.map[var->map.y][var->map.x];
-		var->color.green = 0 + var->map.map[var->map.y][var->map.x];
-		var->color.blue = 0;
-	}
 }
 
 int	ft_creation(char *av)
@@ -126,13 +122,16 @@ int	ft_creation(char *av)
 	ft_nb_col_li(av, &var);
 	fd = (open(av, O_RDONLY));
 	if (fd == -1)
-		return (-1);
+	{
+		perror("Open file failed");
+		exit (-1);
+	}
 	ft_parsing(fd, &var);
 	ft_size_win(&var);
 	ft_inbetween(&var);
 	var.point.alt = var.point.space;
 	var.point.left_right = var.win_len / 4;
-	var.point.up_down = var.win_width / 4;
+	var.point.up_down = var.win_width / 8;
 	ft_aff_window(&var);
 	close(fd);
 	ft_bzero(&var, sizeof(t_mlx));

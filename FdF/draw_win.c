@@ -6,18 +6,18 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:23:55 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/17 15:47:01 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/18 14:31:27 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
+
 void	ft_draw_one_col(t_mlx *var)
 {
 	while (var->point.y < ((var->map.li - 1) * var->point.space))
 	{
 		col_pt_next(var);
-		ft_bresenham(var);	
+		ft_bresenham(var);
 		var->map.y++;
 		var->point.y += var->point.space;
 		var->point.x1 = var->point.x2;
