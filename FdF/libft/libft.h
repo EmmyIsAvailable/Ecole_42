@@ -6,12 +6,12 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:34:17 by eruellan          #+#    #+#             */
-/*   Updated: 2021/12/20 14:03:59 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/18 14:32:10 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 # include <stdlib.h>
 # include <unistd.h>
