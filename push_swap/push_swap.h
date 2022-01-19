@@ -37,11 +37,15 @@ typedef struct s_var
 
 /*main*/
 void		ft_error(char *message, int error);
+t_var		ft_init(t_var *var);
+char		**fill_stack(t_var *arg, int ac, char **av);
+void		push_swap(t_var *arg);
 
 /*checks*/
 int		check_doubles(t_var *arg);
 int		check_numbers(t_var *arg);
 int		check_sorted(t_var *arg);
+int		check_overflow(char *nb);
 
 /*utils*/
 void		**ft_free_tab(char **data);
@@ -51,8 +55,17 @@ int		ft_is_in_scope(char c);
 /*list*/
 t_stack		*ft_fill_stack(t_var *arg);
 int		ft_size_stack(t_var *arg);
+void		ft_lst_add_back(t_stack **front, t_stack *new);
+
+/*action*/
+void		ft_choice(t_var *arg, int a);
+void		ft_choice2(t_var *arg, int a);
+void		ft_choice3(t_var *arg, int a);
 
 /*operations*/
 void		ft_push(t_stack *a, t_stack *b);
+void		ft_swap(t_stack *a);
+void		ft_reverse(t_stack *a);
+void		ft_rotate(t_stack *a);
 
 #endif
