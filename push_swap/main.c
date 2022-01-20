@@ -35,14 +35,14 @@ void	push_swap(t_var *arg)
 	t_stack *tmp = arg->a;
 	while (tmp)
 	{
-		printf("stack dans ps: %d\n", tmp->val);
+		printf("avant...: %d\n", tmp->val);
 		tmp = tmp->next;
 	}
 	t_stack *tmp2 = arg->a;
-	tmp2 = ft_swap(tmp2);
+	tmp2 = ft_reverse(tmp2);
 	while (tmp2)
 	{
-		printf("stack dans ps: %d\n", tmp2->val);
+		printf("apres: %d\n", tmp2->val);
 		tmp2 = tmp2->next;
 	}
 	arg->len = ft_size_stack(arg);
