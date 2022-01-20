@@ -58,10 +58,10 @@ int	check_sorted(t_var *arg)
 	tmp = arg->a;
 	while (tmp && tmp->next)
 	{
-		if (tmp->next && (tmp->val < tmp->next->val))
+		if (tmp->val < tmp->next->val)
 			tmp = tmp->next;
 		else
-			return (0);
+			return (1);	
 	}
-	return (1);
+	return (0);
 }

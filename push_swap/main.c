@@ -12,7 +12,6 @@ t_var	ft_init(t_var *var)
 	var = malloc(sizeof(t_var));
 	if (!var)
 		ft_error("Error : initialisation failed\n", 1);
-	var->a = NULL;
 	var->b = NULL;
 	var->len = 0;
 	var->tab = NULL;
@@ -33,17 +32,30 @@ void	push_swap(t_var *arg)
 	if (!check_doubles(arg) || !check_numbers(arg))
 		ft_free_tab(arg->tab);
 	arg->a = ft_fill_stack(arg);
+	t_stack *tmp = arg->a;
+	while (tmp)
+	{
+		printf("stack dans ps: %d\n", tmp->val);
+		tmp = tmp->next;
+	}
+	t_stack *tmp2 = arg->a;
+	tmp2 = ft_swap(tmp2);
+	while (tmp2)
+	{
+		printf("stack dans ps: %d\n", tmp2->val);
+		tmp2 = tmp2->next;
+	}
+	arg->len = ft_size_stack(arg);
 	if (!check_sorted(arg))
 		ft_error("Error : list of arguments already sorted\n", 1);
-	arg->len = ft_size_stack(arg);
 }
 
 int	main(int ac, char **av)
 {
 	t_var	arg;
 
-	if (ac < 2)
-		ft_error("Error : no argument entered\n", 1);
+	if (ac != 2)
+		ft_error("Error : format is './push-swap <stack> in double quotes'\n", 1);
 	else
 	{
 		ft_init(&arg);

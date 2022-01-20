@@ -14,18 +14,25 @@ void	ft_push(t_stack *a, t_stack *b)
 	}
 }
 
-void	ft_swap(t_stack *a)
+t_stack	*ft_swap(t_stack *a)
 {
 	t_stack	*tmp;
+	t_stack	*tmp2;
 
 	if (a && a->next)
 	{
-		tmp = a;
-		a = a->next;
+		if (a->next->next)
+			tmp2 = a->next->next;
+		tmp = a->next;
+		if (tmp2)
+			a->next = tmp2;
+		else
+			a->next = NULL;
 		a->prev = tmp;
 		tmp->next = a;
 		tmp->prev = NULL;
 	}
+	return (tmp);
 }
 
 void	ft_reverse(t_stack *a)
