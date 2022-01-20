@@ -2,17 +2,31 @@
 
 t_stack	*ft_push(t_stack *a, t_stack *b)
 {
-	t_stack	*tmp;
+	int	inter;
+	t_stack	*new;
 
-	if (a && b)
+	if (b)
 	{
-		tmp = b;
-		a->prev = tmp;
-		tmp->next = a;
-		tmp->prev = NULL;
-		b = b->next;
+		inter = b->val;
+		new = (t_stack *)malloc(sizeof(t_stack));
+		if (!new)
+			return (NULL);
+		new->val = inter;
+		new->prev = NULL;
+		if (a)
+		{
+			new->next = a;
+			a->prev = new;
+		}
+		else
+			new->next = NULL;
+		if (b->next)
+			b = b->next;
+		else
+			b->next = NULL;
+		return (new);
 	}
-	return (a);
+	return (NULL);
 }
 
 t_stack	*ft_swap(t_stack *a)

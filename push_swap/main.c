@@ -12,8 +12,8 @@ t_var	ft_init(t_var *var)
 	var = malloc(sizeof(t_var));
 	if (!var)
 		ft_error("Error : initialisation failed\n", 1);
-	var->b = NULL;
 	var->len = 0;
+	var->b = NULL;
 	var->tab = NULL;
 	return (*var);
 }
@@ -38,12 +38,14 @@ void	push_swap(t_var *arg)
 		printf("avant...: %d\n", tmp->val);
 		tmp = tmp->next;
 	}
-	t_stack *tmp2 = arg->a;
-	tmp2 = ft_reverse(tmp2);
-	while (tmp2)
+	t_stack	*tmp3 = arg->b;
+	arg->b = ft_push(arg->b, arg->a);
+	printf("a : %d, b : %d\n", arg->a->val, arg->b->val);
+	while (tmp3)
 	{
-		printf("apres: %d\n", tmp2->val);
-		tmp2 = tmp2->next;
+		printf("apres: %d, b : %d\n", arg->a->val, tmp3->val);
+		tmp3 = tmp3->next;
+		arg->a = arg->a->next;
 	}
 	arg->len = ft_size_stack(arg);
 	if (!check_sorted(arg))
