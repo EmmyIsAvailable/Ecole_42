@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_stack	*ft_push_a(t_stack *a, t_stack *b)
+t_stack	*ft_push(t_stack *a, t_stack *b)
 {
 	int	inter;
 	t_stack	*new;
@@ -22,37 +22,6 @@ t_stack	*ft_push_a(t_stack *a, t_stack *b)
 			new->next = NULL;
 	}
 	return (new);
-}
-
-t_var	*ft_push_b(t_var *arg, t_stack *a, t_stack *b)
-{
-	int	inter;
-	t_stack	*new;
-
-	if (b)
-	{
-		inter = b->val;
-		new = (t_stack *)malloc(sizeof(t_stack));
-		if (!new)
-			return (NULL);
-		new->val = inter;
-		new->prev = NULL;
-		if (a)
-		{
-			new->next = a;
-			a->prev = new;
-		}
-		else
-		{
-			new->next = NULL;
-			arg->a = new;
-		}
-		if (arg->b->next)
-			arg->b = arg->b->next;
-		else
-			arg->b->next = NULL;
-	}
-	return (arg);
 }
 
 t_stack	*ft_swap(t_stack *a)

@@ -42,12 +42,7 @@ void	push_swap(t_var *arg)
 	arg->len = ft_size_stack(arg->a);
 	if (!check_sorted(arg))
 		ft_error("Error : list of arguments already sorted\n", 1);
-	if (arg->len == 2)
-		ft_sort_2(arg);
-	else if (arg->len == 3)
-		ft_sort_3(arg);
-	else
-		ft_median_sorted(arg);
+	ft_sort(arg, arg->len);
 	t_stack *tmp = arg->a;
 	while (tmp)
 	{

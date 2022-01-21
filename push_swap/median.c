@@ -51,7 +51,7 @@ int	ft_find_median(t_stack *a)
 	return (median);
 }
 
-void	ft_median_sorted(t_var *arg)
+void	ft_median_sorted(t_var *arg, int *r, int *p)
 {
 	int	median;
 	t_stack	*tmp;
@@ -65,9 +65,15 @@ void	ft_median_sorted(t_var *arg)
 	while (i < size)
 	{
 		if (tmp->val < median)
-			ft_choice(arg, 4);
+		{
+			*p += 1;
+			ft_choice(arg, 5);
+		}
 		else
+		{
+			*r += 1;
 			ft_choice(arg, 6);
+		}
 		tmp = tmp->next;
 		i++;
 	}
