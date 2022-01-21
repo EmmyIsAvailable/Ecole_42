@@ -20,10 +20,17 @@ t_var	ft_init(t_var *var)
 
 char	**fill_stack(t_var *arg, int ac, char **av)
 {
+	int	i;
+
+	i = 0;
 	if (ac == 2)
 		arg->tab = ft_split(av[1], ' ');
 	else
-		arg->tab = &av[1];
+	{
+		while (++i < ac)
+			arg->tab[i - 1] = ft_strdup(av[i]);
+		arg->tab[i - 1] = NULL;
+	}
 	return (arg->tab);
 }
 
@@ -32,32 +39,36 @@ void	push_swap(t_var *arg)
 	if (!check_doubles(arg) || !check_numbers(arg))
 		ft_free_tab(arg->tab);
 	arg->a = ft_fill_stack(arg);
+	arg->len = ft_size_stack(arg->a);
+	if (!check_sorted(arg))
+		ft_error("Error : list of arguments already sorted\n", 1);
+	if (arg->len == 2)
+		ft_sort_2(arg);
+	else if (arg->len == 3)
+		ft_sort_3(arg);
+	else
+		ft_median_sorted(arg);
 	t_stack *tmp = arg->a;
 	while (tmp)
 	{
-		printf("avant...: %d\n", tmp->val);
+		printf("a = %d\n", tmp->val);
 		tmp = tmp->next;
 	}
-	t_stack	*tmp3 = arg->b;
-	arg->b = ft_push(arg->b, arg->a);
-	printf("a : %d, b : %d\n", arg->a->val, arg->b->val);
-	while (tmp3)
+	t_stack *tmp2 = arg->b;
+	while (tmp2)
 	{
-		printf("apres: %d, b : %d\n", arg->a->val, tmp3->val);
-		tmp3 = tmp3->next;
-		arg->a = arg->a->next;
+		printf("b = %d\n", tmp2->val);
+		tmp2 = tmp2->next;
 	}
-	arg->len = ft_size_stack(arg);
-	if (!check_sorted(arg))
-		ft_error("Error : list of arguments already sorted\n", 1);
+	
 }
 
 int	main(int ac, char **av)
 {
 	t_var	arg;
 
-	if (ac != 2)
-		ft_error("Error : format is './push-swap <stack> in double quotes'\n", 1);
+	if (ac < 2)
+		ft_error("Error : format is './push-swap <stack>'\n", 1);
 	else
 	{
 		ft_init(&arg);

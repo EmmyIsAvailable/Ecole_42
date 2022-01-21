@@ -39,13 +39,13 @@ t_stack	*ft_fill_stack(t_var *arg)
 	return (arg->a);
 }
 
-int	ft_size_stack(t_var *arg)
+int	ft_size_stack(t_stack *a)
 {
 	int	i;
 	t_stack	*tmp;
 
 	i = 0;
-	tmp = arg->a;
+	tmp = a;
 	while (tmp)
 	{
 		i++;

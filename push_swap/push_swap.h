@@ -54,7 +54,7 @@ int		ft_is_in_scope(char c);
 
 /*list*/
 t_stack		*ft_fill_stack(t_var *arg);
-int		ft_size_stack(t_var *arg);
+int		ft_size_stack(t_stack *a);
 t_stack		*ft_lst_add_back(t_stack *front, t_stack *new);
 
 /*action*/
@@ -63,9 +63,19 @@ void		ft_choice2(t_var *arg, int a);
 void		ft_choice3(t_var *arg, int a);
 
 /*operations*/
-t_stack		*ft_push(t_stack *a, t_stack *b);
+t_stack		*ft_push_a(t_stack *a, t_stack *b);
+t_var		*ft_push_b(t_var *arg, t_stack *a, t_stack *b);
 t_stack		*ft_swap(t_stack *a);
 t_stack		*ft_reverse(t_stack *a);
 t_stack		*ft_rotate(t_stack *a);
+
+/*sort_10*/
+void		ft_sort_3(t_var *arg);
+void		ft_sort_2(t_var *arg);
+
+/*median*/
+int		ft_find_median(t_stack *a);
+int		*ft_sort_tab(int *tab);
+void		ft_median_sorted(t_var *arg);
 
 #endif
