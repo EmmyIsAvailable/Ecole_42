@@ -11,7 +11,7 @@ int	check_doubles(t_var *arg)
 		j = i;
 		while (arg->tab[++j])
 		{
-			if (ft_strncmp(arg->tab[i], arg->tab[j], ft_strlen(arg->tab[j])) == 0)
+			if (ft_strncmp(arg->tab[i], arg->tab[j], 11) == 0)
 				ft_error("Error : double values\n", 1);
 		}
 	}
@@ -51,7 +51,7 @@ int	check_numbers(t_var *arg)
 	return (1);
 }
 
-int	check_sorted(t_var *arg)
+int	check_sorted_a(t_var *arg)
 {
 	t_stack	*tmp;
 
@@ -59,6 +59,21 @@ int	check_sorted(t_var *arg)
 	while (tmp && tmp->next)
 	{
 		if (tmp->val < tmp->next->val)
+			tmp = tmp->next;
+		else
+			return (1);	
+	}
+	return (0);
+}
+
+int	check_sorted_b(t_var *arg)
+{
+	t_stack	*tmp;
+
+	tmp = arg->b;
+	while (tmp && tmp->next)
+	{
+		if (tmp->val > tmp->next->val)
 			tmp = tmp->next;
 		else
 			return (1);	

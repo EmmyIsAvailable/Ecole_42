@@ -31,6 +31,7 @@ typedef struct s_var
 	char	**av;
 	char	**tab;
 	int	len;
+	int	p;
 	t_stack	*a;
 	t_stack	*b;
 }	t_var;
@@ -44,8 +45,9 @@ void		push_swap(t_var *arg);
 /*checks*/
 int		check_doubles(t_var *arg);
 int		check_numbers(t_var *arg);
-int		check_sorted(t_var *arg);
+int		check_sorted_a(t_var *arg);
 int		check_overflow(char *nb);
+int		check_sorted_b(t_var *arg);
 
 /*utils*/
 void		**ft_free_tab(char **data);
@@ -68,14 +70,24 @@ t_stack		*ft_swap(t_stack *a);
 t_stack		*ft_reverse(t_stack *a);
 t_stack		*ft_rotate(t_stack *a);
 
-/*sort*/
-void		ft_sort_3(t_var *arg);
-void		ft_sort_2(t_var *arg);
-void		ft_sort(t_var *arg, int len);
+/*sort_a*/
+void		ft_sort_3_a(t_var *arg);
+void		ft_sort_2_a(t_var *arg);
+void		ft_sort_a(t_var *arg, int len);
 
 /*median*/
 int		ft_find_median(t_stack *a);
 int		*ft_sort_tab(int *tab);
-void		ft_median_sorted(t_var *arg, int *r, int *p);
+int		ft_median_sorted_a(t_var *arg, int *r, int *p);
+
+/*sort_b*/
+void		ft_sort_3_b(t_var *arg);
+void		ft_sort_2_b(t_var *arg);
+void		ft_sort_b(t_var *arg, int len);
+int		ft_median_sorted_b(t_var *arg, int *r, int *p);
+
+/*sort_short*/
+void		ft_sort_short_a(t_var *arg);
+void		ft_sort_short_b(t_var *arg);
 
 #endif

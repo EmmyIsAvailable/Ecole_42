@@ -15,6 +15,7 @@ t_var	ft_init(t_var *var)
 	var->len = 0;
 	var->b = NULL;
 	var->tab = NULL;
+	var->p = 0;
 	return (*var);
 }
 
@@ -40,20 +41,20 @@ void	push_swap(t_var *arg)
 		ft_free_tab(arg->tab);
 	arg->a = ft_fill_stack(arg);
 	arg->len = ft_size_stack(arg->a);
-	if (!check_sorted(arg))
+	if (!check_sorted_a(arg))
 		ft_error("Error : list of arguments already sorted\n", 1);
-	ft_sort(arg, arg->len);
+	if (arg->len == 2)
+		ft_sort_2_a(arg);
+	else if (arg->len == 3)
+		ft_sort_3_a(arg);
+	else
+		ft_sort_a(arg, arg->len);
+	arg->b = arg->a;
 	t_stack *tmp = arg->a;
 	while (tmp)
 	{
-		printf("a = %d\n", tmp->val);
+		printf("a dans ps = %d\n", tmp->val);
 		tmp = tmp->next;
-	}
-	t_stack *tmp2 = arg->b;
-	while (tmp2)
-	{
-		printf("b = %d\n", tmp2->val);
-		tmp2 = tmp2->next;
 	}
 	
 }

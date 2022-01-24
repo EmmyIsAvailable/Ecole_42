@@ -44,14 +44,14 @@ int	ft_find_median(t_stack *a)
 	}
 	tab = ft_sort_tab(tab);
 	if (i % 2 == 0)
-		median = tab[i / 2];
+		median = tab[(i) / 2];
 	else
 		median = tab[(i + 1) / 2];
 	free(tab);
 	return (median);
 }
 
-void	ft_median_sorted(t_var *arg, int *r, int *p)
+int	ft_median_sorted_a(t_var *arg, int *r, int *p)
 {
 	int	median;
 	t_stack	*tmp;
@@ -77,4 +77,5 @@ void	ft_median_sorted(t_var *arg, int *r, int *p)
 		tmp = tmp->next;
 		i++;
 	}
+	return (*p);
 }
