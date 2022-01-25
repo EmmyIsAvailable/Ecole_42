@@ -34,7 +34,7 @@ void	ft_sort_2_a(t_var *arg)
 		ft_choice(arg, 1);
 }
 
-void	ft_sort_a(t_var *arg, int len)
+t_stack	*ft_sort_a(t_var *arg, int len)
 {
 	int	p;
 	int	r;
@@ -42,39 +42,24 @@ void	ft_sort_a(t_var *arg, int len)
 	p = 0;
 	r = 0;
 	printf("sort a, lena : %d\n", len);
-	t_stack *tmp = arg->a;
-	t_stack *tmpb = arg->b;
-	while (tmp)
+	if (len <= 3)
 	{
-		printf("a : %d\n", tmp->val);
-		tmp = tmp->next;	
-	}
-	while (tmpb)
-	{
-		printf("b : %d\n", tmpb->val);
-		tmpb = tmpb->next;
-	}
-	if (len <= 1)
-		return ;
-	if (len == 2)
-	{
-		ft_sort_2_a(arg);
-		return ;
-	}
-	else if (len == 3)
-	{
-		if (ft_size_stack(arg->a) == 3)
-			ft_sort_3_a(arg);
-		else
-			ft_sort_short_a(arg);
-		return ;
+		t_stack *tmpa1 = arg->a;
+		while (tmpa1)
+		{
+			printf("sort a len 3 : %d\n", tmpa1->val);
+			tmpa1 = tmpa1->next;
+		}
+		ft_sort_short_a(arg, arg->a);
+		return(arg->a);
 	}
 	if (arg->a && !arg->b && check_sorted_a(arg) == 0)
-		return ;
+		return (arg->a);
 	ft_median_sorted_a(arg, &r, &p);
 	printf("dans a -> p : %d, r : %d\n", p, r);
-	ft_sort_a(arg, (len - p));
-	ft_sort_b(arg, p);
+	arg->a = ft_sort_a(arg, (len - p));
+	arg->b = ft_sort_b(arg, p);
 	while (p-- && arg->b)
 		ft_choice(arg, 4);
+	return (arg->a);
 }

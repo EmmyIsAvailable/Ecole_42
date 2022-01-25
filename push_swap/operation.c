@@ -48,19 +48,18 @@ t_stack	*ft_reverse(t_stack *a)
 	if (a && a->next)
 	{
 		tmp = a;
-		while (tmp->next && tmp->next->next)
+		while (tmp->next)
 			tmp = tmp->next;
-		last = tmp->next->val;
+		last = tmp->val;
+		tmp = tmp->prev;
 		tmp->next = NULL;
-		while (tmp && tmp->prev)
-			tmp = tmp->prev;
 		new = (t_stack *)malloc(sizeof(t_stack));
 		if (!new)
 			return (NULL);
 		new->val = last;
-		new->next = tmp;
+		new->next = a;
 		new->prev = NULL;
-		tmp->prev = new;
+		a->prev = new;
 	}
 	return (new);
 }

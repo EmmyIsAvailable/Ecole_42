@@ -49,7 +49,6 @@ void	push_swap(t_var *arg)
 		ft_sort_3_a(arg);
 	else
 		ft_sort_a(arg, arg->len);
-	arg->b = arg->a;
 	t_stack *tmp = arg->a;
 	while (tmp)
 	{
