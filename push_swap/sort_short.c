@@ -23,13 +23,13 @@ void	ft_sort_short_b(t_var *arg, t_stack *b)
 
 	len = ft_size_stack(b);
 	if (len >= 2 && b->val < b->next->val)
-		ft_choice(arg, 1);
+		ft_choice(arg, 2);
 	if (len >= 3 && b->next->val < b->next->next->val)
 		{
-			ft_choice(arg, 6);
-			ft_choice(arg, 1);
-			ft_choice(arg, 9);
+			ft_choice(arg, 7);
+			ft_choice(arg, 2);
+			ft_choice(arg, 10);
 		}
 	if (len >= 2 && b->val < b->next->val)
-			ft_choice(arg, 1);
+			ft_choice(arg, 2);
 }

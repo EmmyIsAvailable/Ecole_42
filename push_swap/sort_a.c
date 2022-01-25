@@ -42,6 +42,18 @@ t_stack	*ft_sort_a(t_var *arg, int len)
 	p = 0;
 	r = 0;
 	printf("sort a, lena : %d\n", len);
+	t_stack *tmpa = arg->a;
+	while (tmpa)
+	{
+		printf("sort a a : %d\n", tmpa->val);
+		tmpa = tmpa->next;
+	}
+	t_stack *tmpb = arg->b;
+	while (tmpb)
+	{
+		printf("sort a b : %d\n", tmpb->val);
+		tmpb= tmpb->next;
+	}
 	if (len <= 3)
 	{
 		t_stack *tmpa1 = arg->a;
@@ -55,7 +67,7 @@ t_stack	*ft_sort_a(t_var *arg, int len)
 	}
 	if (arg->a && !arg->b && check_sorted_a(arg) == 0)
 		return (arg->a);
-	ft_median_sorted_a(arg, &r, &p);
+	ft_median_sorted_a(arg, &r, &p, len);
 	printf("dans a -> p : %d, r : %d\n", p, r);
 	arg->a = ft_sort_a(arg, (len - p));
 	arg->b = ft_sort_b(arg, p);

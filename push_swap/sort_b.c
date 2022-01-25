@@ -60,11 +60,11 @@ t_stack	*ft_sort_b(t_var *arg, int len)
 		ft_sort_short_b(arg, arg->b);
 		return (arg->b);
 	}
-	ft_median_sorted_b(arg, &r, &p);
+	ft_median_sorted_b(arg, &r, &p, len);
 	printf("dans b -> p : %d, r -> %d\n", p, r);
 	arg->a = ft_sort_a(arg, p);
 	arg->b = ft_sort_b(arg, (len - p));
-	if (arg->b && check_sorted_b(arg) == 0)
+	if (arg->b && check_sorted_b(arg) == 1)
 	{
 		while (p--)
 			ft_choice(arg, 5);
@@ -72,14 +72,14 @@ t_stack	*ft_sort_b(t_var *arg, int len)
 	return (arg->b);
 }
 
-int    ft_median_sorted_b(t_var *arg, int *r, int *p)
+int    ft_median_sorted_b(t_var *arg, int *r, int *p, int len)
 {
         int     median;
         t_stack *tmp;
         int     i;
         int     size;
 
-        median = ft_find_median(arg->b, 2);
+        median = ft_find_median(arg->b, 2, len);
         tmp = arg->b;
         i = 0;
         size = ft_size_stack(arg->b);

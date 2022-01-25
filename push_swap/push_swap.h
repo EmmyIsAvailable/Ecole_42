@@ -76,15 +76,15 @@ void		ft_sort_2_a(t_var *arg);
 t_stack		*ft_sort_a(t_var *arg, int len);
 
 /*median*/
-int		ft_find_median(t_stack *a, int stack);
-int		*ft_sort_tab(int *tab);
-int		ft_median_sorted_a(t_var *arg, int *r, int *p);
+int		ft_find_median(t_stack *a, int stack, int len);
+int		*ft_sort_tab(int *tab, int len);
+int		ft_median_sorted_a(t_var *arg, int *r, int *p, int len);
 
 /*sort_b*/
 void		ft_sort_3_b(t_var *arg);
 void		ft_sort_2_b(t_var *arg);
 t_stack		*ft_sort_b(t_var *arg, int len);
-int		ft_median_sorted_b(t_var *arg, int *r, int *p);
+int		ft_median_sorted_b(t_var *arg, int *r, int *p, int len);
 
 /*sort_short*/
 void		ft_sort_short_a(t_var *arg, t_stack *a);
