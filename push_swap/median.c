@@ -59,6 +59,7 @@ int	ft_find_median(t_stack *a, int stack, int len)
 		median = tab[(len / 2) - 1];
 	else
 		median = tab[len / 2];
+	free(tab);
 	return (median);
 }
 
@@ -67,13 +68,13 @@ int	ft_median_sorted_a(t_var *arg, int *r, int *p, int len)
 	int	median;
 	t_stack	*tmp;
 	int	i;
-	int	size;
+	//int	size;
 
 	median = ft_find_median(arg->a, 1, len);
 	tmp = arg->a;
 	i = 0;
-	size = ft_size_stack(arg->a);
-	while (i < size)
+	//size = ft_size_stack(arg->a);
+	while (i < len && while_under_median(arg, len - i, median))
 	{
 		if (tmp->val < median)
 		{
@@ -89,4 +90,38 @@ int	ft_median_sorted_a(t_var *arg, int *r, int *p, int len)
 		i++;
 	}
 	return (*p);
+}
+
+int	while_under_median(t_var *arg, int n, int median)
+{
+	int	i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = arg->a;
+	while (i < n)
+	{
+		if (tmp->val < median)
+			return (1);
+		i++;
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	while_above_median(t_var *arg, int n, int median)
+{
+	int	i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = arg->b;
+	while (i < n)
+	{
+		if (tmp->val > median)
+			return (1);
+		i++;
+		tmp = tmp->next;
+	}
+	return (0);
 }

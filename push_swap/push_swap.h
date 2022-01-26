@@ -55,7 +55,7 @@ long long	ft_atoll(char *nb);
 int		ft_is_in_scope(char c);
 
 /*list*/
-t_stack		*ft_fill_stack(t_var *arg);
+int		ft_fill_stack(t_var *arg);
 int		ft_size_stack(t_stack *a);
 t_stack		*ft_lst_add_back(t_stack *front, t_stack *new);
 
@@ -65,26 +65,31 @@ void		ft_choice2(t_var *arg, int a);
 void		ft_choice3(t_var *arg, int a);
 
 /*operations*/
-t_stack		*ft_push(t_stack *a, t_stack *b);
+t_stack		*ft_push(t_stack *a, t_stack *b, t_var *arg, int stack);
 t_stack		*ft_swap(t_stack *a);
 t_stack		*ft_reverse(t_stack *a);
 t_stack		*ft_rotate(t_stack *a);
+int		is_in_tab(t_var *arg);
 
 /*sort_a*/
 void		ft_sort_3_a(t_var *arg);
 void		ft_sort_2_a(t_var *arg);
 t_stack		*ft_sort_a(t_var *arg, int len);
+void		ft_reverse_a(t_var *arg, int *r);
 
 /*median*/
 int		ft_find_median(t_stack *a, int stack, int len);
 int		*ft_sort_tab(int *tab, int len);
 int		ft_median_sorted_a(t_var *arg, int *r, int *p, int len);
+int		while_under_median(t_var *arg, int n, int median);
+int		while_above_median(t_var *arg, int n, int median);
 
 /*sort_b*/
 void		ft_sort_3_b(t_var *arg);
 void		ft_sort_2_b(t_var *arg);
 t_stack		*ft_sort_b(t_var *arg, int len);
 int		ft_median_sorted_b(t_var *arg, int *r, int *p, int len);
+void		ft_reverse_b(t_var *arg, int *r);
 
 /*sort_short*/
 void		ft_sort_short_a(t_var *arg, t_stack *a);
