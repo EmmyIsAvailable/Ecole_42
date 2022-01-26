@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_a.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 19:20:55 by eruellan          #+#    #+#             */
+/*   Updated: 2022/01/26 19:20:57 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_sort_3_a(t_var *arg)
@@ -34,6 +46,29 @@ void	ft_sort_2_a(t_var *arg)
 		ft_choice(arg, 1);
 }
 
+void	ft_reverse_a(t_var *arg, int *r)
+{
+	int	len;
+
+	len = ft_size_stack(arg->a);
+	if (*r > (len / 2) && len > 3)
+	{
+		while (*r < len)
+		{
+			ft_choice(arg, 6);
+			*r = *r + 1;
+		}
+	}
+	else if (len > 3)
+	{
+		while (*r)
+		{
+			ft_choice(arg, 9);
+			*r = *r -1;
+		}
+	}
+}
+
 t_stack	*ft_sort_a(t_var *arg, int len)
 {
 	int	p;
@@ -41,34 +76,18 @@ t_stack	*ft_sort_a(t_var *arg, int len)
 
 	p = 0;
 	r = 0;
-	printf("sort a, lena : %d\n", len);
-	t_stack *tmpa = arg->a;
-	while (tmpa)
-	{
-		printf("sort a a : %d\n", tmpa->val);
-		tmpa = tmpa->next;
-	}
-	t_stack *tmpb = arg->b;
-	while (tmpb)
-	{
-		printf("sort a b : %d\n", tmpb->val);
-		tmpb= tmpb->next;
-	}
+	if (arg->a && check_sorted_a(arg) == 0)
+		return (arg->a);
 	if (len <= 3)
 	{
-		t_stack *tmpa1 = arg->a;
-		while (tmpa1)
-		{
-			printf("sort a len 3 : %d\n", tmpa1->val);
-			tmpa1 = tmpa1->next;
-		}
-		ft_sort_short_a(arg, arg->a);
+		if (ft_size_stack(arg->a) == 3)
+			ft_sort_3_a(arg);
+		else
+			ft_sort_short_a(arg, arg->a);
 		return(arg->a);
 	}
-	if (arg->a && !arg->b && check_sorted_a(arg) == 0)
-		return (arg->a);
 	ft_median_sorted_a(arg, &r, &p, len);
-	printf("dans a -> p : %d, r : %d\n", p, r);
+	ft_reverse_a(arg, &r);
 	arg->a = ft_sort_a(arg, (len - p));
 	arg->b = ft_sort_b(arg, p);
 	while (p-- && arg->b)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 11:22:39 by eruellan          #+#    #+#             */
+/*   Updated: 2022/01/26 13:49:17 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_error(char *message, int error)
@@ -13,6 +25,7 @@ t_var	ft_init(t_var *var)
 	if (!var)
 		ft_error("Error : initialisation failed\n", 1);
 	var->len = 0;
+	var->a = NULL;
 	var->b = NULL;
 	var->tab = NULL;
 	var->p = 0;
@@ -38,9 +51,12 @@ char	**fill_stack(t_var *arg, int ac, char **av)
 void	push_swap(t_var *arg)
 {
 	if (!check_doubles(arg) || !check_numbers(arg))
+	{
 		ft_free_tab(arg->tab);
-	arg->a = ft_fill_stack(arg);
-	arg->len = ft_size_stack(arg->a);
+		//free var;
+		return ;
+	}
+	arg->len = ft_fill_stack(arg);
 	if (!check_sorted_a(arg))
 		ft_error("Error : list of arguments already sorted\n", 1);
 	if (arg->len == 2)
@@ -49,12 +65,6 @@ void	push_swap(t_var *arg)
 		ft_sort_3_a(arg);
 	else
 		ft_sort_a(arg, arg->len);
-	t_stack *tmp = arg->a;
-	while (tmp)
-	{
-		printf("a dans ps = %d\n", tmp->val);
-		tmp = tmp->next;
-	}
 	
 }
 
@@ -69,7 +79,9 @@ int	main(int ac, char **av)
 		ft_init(&arg);
 		if (!(arg.tab = fill_stack(&arg, ac, av)))
 			ft_error("Error : splitting stack failed\n", 1);
+		
 		push_swap(&arg);
+		free(arg.a);
 	}
 	return (0);
 }

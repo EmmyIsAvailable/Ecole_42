@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 13:05:10 by eruellan          #+#    #+#             */
+/*   Updated: 2022/01/26 13:34:17 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*ft_lst_add_back(t_stack *front, t_stack *new)
@@ -18,25 +30,25 @@ t_stack	*ft_lst_add_back(t_stack *front, t_stack *new)
 	return (front);
 }
 
-t_stack	*ft_fill_stack(t_var *arg)
+int	ft_fill_stack(t_var *arg)
 {
 	int	i;
 	t_stack	*new;
 
-	i = -1;
 	arg->a = NULL;
+	i = -1;
 	while (arg->tab[++i])
 	{
 		new = (t_stack *)malloc(sizeof(t_stack));
 		if (!new)
-			return (NULL);
+			return (0);
 		new->val = ft_atoi(arg->tab[i]);
 		new->next = NULL;
 		new->prev = NULL;
 		arg->a = ft_lst_add_back(arg->a, new);
 		new = NULL;
 	}
-	return (arg->a);
+	return (i);
 }
 
 int	ft_size_stack(t_stack *a)
@@ -52,4 +64,18 @@ int	ft_size_stack(t_stack *a)
 		tmp = tmp->next;
 	}
 	return (i);
+}
+
+int	is_in_tab(t_var *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg->tab[i])
+	{
+		if (ft_atoi(arg->tab[i]) == arg->b->val)
+			return (1);
+		i++;
+	}
+	return (0);
 }

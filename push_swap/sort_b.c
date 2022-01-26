@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_b.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 19:21:05 by eruellan          #+#    #+#             */
+/*   Updated: 2022/01/26 19:21:06 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_sort_3_b(t_var *arg)
@@ -34,6 +46,29 @@ void	ft_sort_2_b(t_var *arg)
 		ft_choice(arg, 2);
 }
 
+void	ft_reverse_b(t_var *arg, int *r)
+{
+	int	len;
+
+	len = ft_size_stack(arg->b);
+	if (*r > (len / 2) && len > 3)
+	{
+		while (*r < len)
+		{
+			ft_choice(arg, 7);
+			*r += 1;
+		}
+	}
+	else if (len > 3)
+	{
+		while (*r)
+		{
+			ft_choice(arg, 10);
+			*r -= 1;
+		}
+	}
+}
+
 t_stack	*ft_sort_b(t_var *arg, int len)
 {
 	int	p;
@@ -41,28 +76,14 @@ t_stack	*ft_sort_b(t_var *arg, int len)
 
 	p = 0;
 	r = 0;
-	printf("sort b, len %d, p : %d\n", len, p);
-	t_stack *tmpb = arg->b;
-	t_stack *tmpa = arg->a;
-	while (tmpa)
-	{
-		printf("sort b, a : %d\n", tmpa->val);
-		tmpa = tmpa->next;
-	}
-	while (tmpb)
-	{
-		printf("sort b, b : %d\n", tmpb->val);
-		tmpb = tmpb->next;
-	}
 	if (len <= 3)
 	{
-		printf("len de 3\n");	
 		ft_sort_short_b(arg, arg->b);
 		return (arg->b);
 	}
 	ft_median_sorted_b(arg, &r, &p, len);
-	printf("dans b -> p : %d, r -> %d\n", p, r);
 	arg->a = ft_sort_a(arg, p);
+	ft_reverse_b(arg, &r);
 	arg->b = ft_sort_b(arg, (len - p));
 	if (arg->b && check_sorted_b(arg) == 1)
 	{

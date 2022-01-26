@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   action.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 19:20:05 by eruellan          #+#    #+#             */
+/*   Updated: 2022/01/26 19:20:07 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_choice3(t_var *arg, int a)
@@ -20,7 +32,7 @@ void	ft_choice2(t_var *arg, int a)
 	if (a == 5)
 	{
 		ft_putstr_fd("pb\n", 1);
-		arg->b = ft_push(arg->b, arg->a);
+		arg->b = ft_push(arg->b, arg->a, arg, 2);
 		arg->a = arg->a->next;
 	}
 	if (a == 6)
@@ -69,7 +81,7 @@ void	ft_choice(t_var *arg, int a)
 	if (a == 4)
 	{
 		ft_putstr_fd("pa\n", 1);
-		arg->a = ft_push(arg->a, arg->b);
+		arg->a = ft_push(arg->a, arg->b, arg, 1);
 		arg->b = arg->b->next;
 	}
 	else
