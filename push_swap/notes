@@ -1,4 +1,4 @@
-test linux nb de coups
+test linux nb de coups : si 1 et 2 se suivent alors ss et meme chose pour rr et rrr / ft_compare_with_median, ex avec ./push_swap "12 10 13 15 6 85 42 74" on rentre dans reverse
 revoir int min et max
 verif fonction interdite
 leaks
