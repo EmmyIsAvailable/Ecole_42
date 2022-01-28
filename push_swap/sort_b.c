@@ -98,11 +98,13 @@ int    ft_median_sorted_b(t_var *arg, int *r, int *p, int len)
         int     median;
         t_stack *tmp;
         int     i;
+        int     size;
 
         median = ft_find_median(arg->b, 2, len);
         tmp = arg->b;
         i = 0;
-        while (i < len && while_above_median(arg, len - i, median))
+        size = ft_size_stack(arg->b);
+        while (i < size)
         {
                 if (tmp->val > median)
                 {
