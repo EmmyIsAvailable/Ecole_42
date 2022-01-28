@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:10:11 by eruellan          #+#    #+#             */
-/*   Updated: 2021/11/26 12:10:06 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/28 11:51:26 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,19 @@ static char	**fill_words(char **res, char const *s, char c)
 	}
 	return (res);
 }
+static void    **ft_free_tab(char **data)
+{
+        int     i;
+
+        i = -1;
+        while (data[++i])
+        {
+                free(data[i]);
+                data[i] = NULL;
+        }
+	free(data);
+        return (NULL);
+}
 
 char	**ft_split(char const *s, char c)
 {
@@ -85,7 +98,11 @@ char	**ft_split(char const *s, char c)
 	split = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!split)
 		return (NULL);
-	fill_words(split, s, c);
+	if (!(fill_words(split, s, c)))
+	{
+		ft_free_tab(split);
+		return (NULL);
+	}
 	split[words] = NULL;
 	return (split);
 }
