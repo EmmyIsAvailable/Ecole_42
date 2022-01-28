@@ -67,7 +67,7 @@ void		ft_choice2(t_var *arg, int a);
 void		ft_choice3(t_var *arg, int a);
 
 /*operations*/
-t_stack		*ft_push(t_stack *a, t_stack *b, t_var *arg, int stack);
+t_stack		*ft_push(t_stack *a, t_stack *b);
 t_stack		*ft_swap(t_stack *a);
 t_stack		*ft_reverse(t_stack *a);
 t_stack		*ft_rotate(t_stack *a);

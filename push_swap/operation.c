@@ -6,19 +6,17 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:24 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/28 10:42:34 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:08:41 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_push(t_stack *a, t_stack *b, t_var *arg, int stack)
+t_stack	*ft_push(t_stack *a, t_stack *b)
 {
 	int	inter;
 	t_stack	*new;
 
-	if (!is_in_tab(arg) && stack == 2)
-		a = NULL;
 	if (b)
 	{
 		inter = b->val;

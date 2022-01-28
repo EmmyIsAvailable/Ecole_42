@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:39 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/28 14:38:49 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:49:00 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_var	ft_init(t_var *var, int ac, char **av)
 	var->len = 0;
 	var->p = 0;
 	var->a = NULL;
+	var->b = NULL;
 	var->ac = ac;
 	var->av = av;
 	return (*var);
