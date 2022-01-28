@@ -27,18 +27,18 @@ typedef struct s_stack
 
 typedef struct s_var
 {
-	int	ac;
-	char	**av;
 	char	**tab;
 	int	len;
 	int	p;
+	int	ac;
+	char	**av;
 	t_stack	*a;
 	t_stack	*b;
 }	t_var;
 
 /*main*/
-void		ft_error(char *message, int error);
-t_var		ft_init(t_var *var);
+void		ft_error(char *message, int error, t_var *arg);
+t_var		ft_init(t_var *var, int ac, char **av);
 char		**fill_stack(t_var *arg, int ac, char **av);
 void		push_swap(t_var *arg);
 
@@ -53,11 +53,13 @@ int		check_sorted_b(t_var *arg);
 void		**ft_free_tab(char **data);
 long long	ft_atoll(char *nb);
 int		ft_is_in_scope(char c);
+void		free_init(t_var *arg);
 
 /*list*/
-int		ft_fill_stack(t_var *arg);
+t_stack		*ft_fill_stack(t_var *arg);
 int		ft_size_stack(t_stack *a);
 t_stack		*ft_lst_add_back(t_stack *front, t_stack *new);
+void		ft_lstdel(t_stack *a);
 
 /*action*/
 void		ft_choice(t_var *arg, int a);

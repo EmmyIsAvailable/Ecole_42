@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:21:23 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/26 19:21:24 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/28 12:57:47 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,17 @@ void    **ft_free_tab(char **data)
                 free(data[i]);
                 data[i] = NULL;
         }
+	free(data);
         return (NULL);
 }
 
+void	free_init(t_var *arg)
+{
+	//if(arg->a)
+	//	ft_lstdel(&arg->a);
+	if (arg->tab)
+		ft_free_tab(arg->tab);
+}
 
 long long	ft_atoll(char *nb)
 {

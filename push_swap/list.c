@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:05:10 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/26 13:34:17 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/28 14:20:40 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,19 @@ t_stack	*ft_lst_add_back(t_stack *front, t_stack *new)
 	return (front);
 }
 
-int	ft_fill_stack(t_var *arg)
+void	ft_lstdel(t_stack *a)
+{
+	t_stack	*tmp;
+
+	while (a)
+	{
+		tmp = a->next;
+		free(a);
+		a = tmp;
+	}
+}
+
+t_stack	*ft_fill_stack(t_var *arg)
 {
 	int	i;
 	t_stack	*new;
@@ -41,14 +53,17 @@ int	ft_fill_stack(t_var *arg)
 	{
 		new = (t_stack *)malloc(sizeof(t_stack));
 		if (!new)
+		{
+			ft_lstdel(arg->a);
 			return (0);
+		}
 		new->val = ft_atoi(arg->tab[i]);
 		new->next = NULL;
 		new->prev = NULL;
 		arg->a = ft_lst_add_back(arg->a, new);
 		new = NULL;
 	}
-	return (i);
+	return (arg->a);
 }
 
 int	ft_size_stack(t_stack *a)

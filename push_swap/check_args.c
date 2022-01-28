@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:20:21 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/26 19:20:23 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/28 14:33:32 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_doubles(t_var *arg)
 		while (arg->tab[++j])
 		{
 			if (ft_strncmp(arg->tab[i], arg->tab[j], 11) == 0)
-				ft_error("Error : double values\n", 1);
+				ft_error("Error : double values\n", 1, arg);
 		}
 	}
 	return (1);
@@ -47,17 +47,17 @@ int	check_numbers(t_var *arg)
 
 	i = -1;
 	if (!arg->tab[0])
-		ft_error("Error : no number entered\n", 1);
+		ft_error("Error : no number entered\n", 1, arg);
 	while (arg->tab[++i])
 	{
 		if (!check_overflow(arg->tab[i]))
-			ft_error("Error : int overflow\n", 1);
+			ft_error("Error : int limits\n", 1, arg);
 		j = -1;
 		while (arg->tab[i][++j])
 		{
 			if (!ft_is_in_scope(arg->tab[i][j]) || (arg->tab[i][j] == '-' && !ft_isdigit(arg->tab[i][j + 1]))
 				|| (arg->tab[i][j] == '+' && !ft_isdigit(arg->tab[i][j + 1])))
-				ft_error("Error : invalid arguments\n", 1);
+				ft_error("Error : invalid arguments\n", 1, arg);
 		}
 	}
 	return (1);

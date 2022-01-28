@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:24 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/26 13:43:08 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/28 10:42:34 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_stack	*ft_reverse(t_stack *a)
 			tmp = tmp->next;
 		last = tmp->val;
 		tmp = tmp->prev;
+		free(tmp->next);
 		tmp->next = NULL;
 		new = (t_stack *)malloc(sizeof(t_stack));
 		if (!new)

@@ -6,29 +6,30 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:39 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/26 13:49:17 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/28 14:38:49 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(char *message, int error)
+void	ft_error(char *message, int error, t_var *arg)
 {
+	if (arg->tab)
+		ft_free_tab(arg->tab);
+	if (arg->a)
+		ft_lstdel(arg->a);
 	if (error == 1)
 		ft_putstr_fd(message, 2);
 	exit(error);
 }
 
-t_var	ft_init(t_var *var)
+t_var	ft_init(t_var *var, int ac, char **av)
 {
-	var = malloc(sizeof(t_var));
-	if (!var)
-		ft_error("Error : initialisation failed\n", 1);
 	var->len = 0;
-	var->a = NULL;
-	var->b = NULL;
-	var->tab = NULL;
 	var->p = 0;
+	var->a = NULL;
+	var->ac = ac;
+	var->av = av;
 	return (*var);
 }
 
@@ -41,6 +42,9 @@ char	**fill_stack(t_var *arg, int ac, char **av)
 		arg->tab = ft_split(av[1], ' ');
 	else
 	{
+		arg->tab = malloc(sizeof(char *) * ac);
+		if (!arg->tab)
+			return (NULL);
 		while (++i < ac)
 			arg->tab[i - 1] = ft_strdup(av[i]);
 		arg->tab[i - 1] = NULL;
@@ -51,14 +55,11 @@ char	**fill_stack(t_var *arg, int ac, char **av)
 void	push_swap(t_var *arg)
 {
 	if (!check_doubles(arg) || !check_numbers(arg))
-	{
-		ft_free_tab(arg->tab);
-		//free var;
 		return ;
-	}
-	arg->len = ft_fill_stack(arg);
+	arg->a = ft_fill_stack(arg);
+	arg->len = ft_size_stack(arg->a);
 	if (!check_sorted_a(arg))
-		ft_error("Error : list of arguments already sorted\n", 1);
+		ft_error("Error : list of arguments already sorted\n", 1, arg);
 	if (arg->len == 2)
 		ft_sort_2_a(arg);
 	else if (arg->len == 3)
@@ -73,15 +74,15 @@ int	main(int ac, char **av)
 	t_var	arg;
 
 	if (ac < 2)
-		ft_error("Error : format is './push-swap <stack>'\n", 1);
+		ft_error("Error : format is './push-swap <stack>'\n", 1, &arg);
 	else
 	{
-		ft_init(&arg);
+		ft_init(&arg, ac, av);
 		if (!(arg.tab = fill_stack(&arg, ac, av)))
-			ft_error("Error : splitting stack failed\n", 1);
-		
+			ft_error("Error : filling tab failed\n", 1, &arg);
 		push_swap(&arg);
-		free(arg.a);
+		ft_free_tab(arg.tab);
+		ft_lstdel(arg.a);
 	}
 	return (0);
 }
