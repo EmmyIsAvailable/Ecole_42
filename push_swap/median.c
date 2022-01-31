@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:20:41 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/26 19:20:42 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:18:55 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,25 @@ int	ft_median_sorted_a(t_var *arg, int *r, int *p, int len)
 	int	median;
 	t_stack	*tmp;
 	int	i;
-	//int	size;
 
 	median = ft_find_median(arg->a, 1, len);
-	tmp = arg->a;
 	i = 0;
-	//size = ft_size_stack(arg->a);
 	while (i < len && while_under_median(arg, len - i, median))
 	{
-		if (tmp->val < median)
+		if (arg->a->val < median)
 		{
 			*p = *p + 1;
+			tmp = arg->a->next;
 			ft_choice(arg, 5);
+			arg->a = tmp;
+			if (tmp)
+				arg->a->prev = NULL;
 		}
 		else
 		{
 			*r = *r + 1;
 			ft_choice(arg, 6);
 		}
-		tmp = tmp->next;
 		i++;
 	}
 	return (*p);

@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:39 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/28 16:49:00 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:19:42 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	push_swap(t_var *arg)
 		ft_sort_3_a(arg);
 	else
 		ft_sort_a(arg, arg->len);
-	
 }
 
 int	main(int ac, char **av)

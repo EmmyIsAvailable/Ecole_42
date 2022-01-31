@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation.c                                        :+:      :+:    :+:   */
+/*   operationbis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:24 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/28 18:08:41 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:11:21 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,6 @@ t_stack	*ft_push(t_stack *a, t_stack *b)
 	t_stack	*from;
 	t_stack	*to;
 	
-	t_stack	*tmp1 = a;
-	while (tmp1)
-	{
-		printf("%d\n", tmp1->val);
-		tmp1 = tmp1->next;
-	}
-	t_stack	*tmp2 = b;
-	while (tmp2)
-	{
-		printf("%d\n", tmp2->val);
-		tmp2 = tmp2->next;
-	}
 	if (b)
 	{
 		from = b;
@@ -80,12 +68,6 @@ t_stack	*ft_swap(t_stack *a)
 	t_stack	*tmp;
 	int	val_inter;
 
-	t_stack	*tmp1 = a;
-	while (tmp1)
-	{
-		printf("%d\n", tmp1->val);
-		tmp1 = tmp1->next;
-	}
 	if (a && a->next)
 	{
 		tmp = a;
@@ -127,12 +109,6 @@ t_stack	*ft_reverse(t_stack *a)
 	t_stack	*tmp;
 	int	last;
 
-	t_stack	*tmp1 = a;
-	while (tmp1)
-	{
-		printf("%d\n", tmp1->val);
-		tmp1 = tmp1->next;
-	}
 	if (a && a->next)
 	{
 		tmp = a;
@@ -178,12 +154,6 @@ t_stack	*ft_rotate(t_stack *a)
 	t_stack	*tmp;
 	int	first;
 
-	t_stack	*tmp1 = a;
-	while (tmp1)
-	{
-		printf("%d\n", tmp1->val);
-		tmp1 = tmp1->next;
-	}
 	if (a && a->next)
 	{
 		tmp = a;
