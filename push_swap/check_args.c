@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:20:21 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/28 14:33:32 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:50:29 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 int	check_doubles(t_var *arg)
 {
-	int	i;
-	int	j;
+	t_stack	*tmp1;
+	t_stack	*tmp2;
 
-	i = -1;
-	while (arg->tab[++i])
+	tmp1 = arg->a;
+	while (tmp1)
 	{
-		j = i;
-		while (arg->tab[++j])
+		tmp2 = tmp1->next;
+		while (tmp2)
 		{
-			if (ft_strncmp(arg->tab[i], arg->tab[j], 11) == 0)
+			if (tmp1->val == tmp2->val)
 				ft_error("Error : double values\n", 1, arg);
+			tmp2 = tmp2->next;
 		}
+		tmp1 = tmp1->next;
 	}
 	return (1);
 }
@@ -55,8 +57,9 @@ int	check_numbers(t_var *arg)
 		j = -1;
 		while (arg->tab[i][++j])
 		{
-			if (!ft_is_in_scope(arg->tab[i][j]) || (arg->tab[i][j] == '-' && !ft_isdigit(arg->tab[i][j + 1]))
-				|| (arg->tab[i][j] == '+' && !ft_isdigit(arg->tab[i][j + 1])))
+			if (!ft_is_in_scope(arg->tab[i][j]) || (arg->tab[i][j] == '-'
+				&& !ft_isdigit(arg->tab[i][j + 1])) || (arg->tab[i][j] == '+'
+				&& !ft_isdigit(arg->tab[i][j + 1])))
 				ft_error("Error : invalid arguments\n", 1, arg);
 		}
 	}
@@ -73,7 +76,7 @@ int	check_sorted_a(t_var *arg)
 		if (tmp->val < tmp->next->val)
 			tmp = tmp->next;
 		else
-			return (1);	
+			return (1);
 	}
 	return (0);
 }
@@ -88,7 +91,7 @@ int	check_sorted_b(t_var *arg)
 		if (tmp->val > tmp->next->val)
 			tmp = tmp->next;
 		else
-			return (1);	
+			return (1);
 	}
 	return (0);
 }

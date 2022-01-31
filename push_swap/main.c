@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:39 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/31 12:19:42 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:59:16 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,14 @@ char	**fill_stack(t_var *arg, int ac, char **av)
 
 void	push_swap(t_var *arg)
 {
-	if (!check_doubles(arg) || !check_numbers(arg))
+	if (!check_numbers(arg))
 		return ;
 	arg->a = ft_fill_stack(arg);
 	arg->len = ft_size_stack(arg->a);
+	if (!check_doubles(arg))
+		return ;
 	if (!check_sorted_a(arg))
-		ft_error("Error : list of arguments already sorted\n", 1, arg);
+		ft_error(NULL, 1, arg);
 	if (arg->len == 2)
 		ft_sort_2_a(arg);
 	else if (arg->len == 3)
@@ -74,11 +76,12 @@ int	main(int ac, char **av)
 	t_var	arg;
 
 	if (ac < 2)
-		ft_error("Error : format is './push-swap <stack>'\n", 1, &arg);
+		return (0);
 	else
 	{
 		ft_init(&arg, ac, av);
-		if (!(arg.tab = fill_stack(&arg, ac, av)))
+		arg.tab = fill_stack(&arg, ac, av);
+		if (!arg.tab)
 			ft_error("Error : filling tab failed\n", 1, &arg);
 		push_swap(&arg);
 		ft_free_tab(arg.tab);
