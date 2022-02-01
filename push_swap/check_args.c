@@ -24,7 +24,7 @@ int	check_doubles(t_var *arg)
 		while (tmp2)
 		{
 			if (tmp1->val == tmp2->val)
-				ft_error("Error : double values\n", 1, arg);
+				ft_error("Error\n", 1, arg);
 			tmp2 = tmp2->next;
 		}
 		tmp1 = tmp1->next;
@@ -49,18 +49,18 @@ int	check_numbers(t_var *arg)
 
 	i = -1;
 	if (!arg->tab[0])
-		ft_error("Error : no number entered\n", 1, arg);
+		ft_error("Error\n", 1, arg);
 	while (arg->tab[++i])
 	{
 		if (!check_overflow(arg->tab[i]))
-			ft_error("Error : int limits\n", 1, arg);
+			ft_error("Error\n", 1, arg);
 		j = -1;
 		while (arg->tab[i][++j])
 		{
 			if (!ft_is_in_scope(arg->tab[i][j]) || (arg->tab[i][j] == '-'
 				&& !ft_isdigit(arg->tab[i][j + 1])) || (arg->tab[i][j] == '+'
 				&& !ft_isdigit(arg->tab[i][j + 1])))
-				ft_error("Error : invalid arguments\n", 1, arg);
+				ft_error("Error\n", 1, arg);
 		}
 	}
 	return (1);
