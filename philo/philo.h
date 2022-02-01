@@ -31,6 +31,7 @@ typedef struct s_data
 void	ft_putstr(char *str);
 
 /*utils*/
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
+long long	ft_timestamp(void);
 
 #endif

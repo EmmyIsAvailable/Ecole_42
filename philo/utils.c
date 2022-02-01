@@ -36,3 +36,11 @@ int	ft_atoi(const char *str)
 	}
 	return (res * signe);
 }
+
+long long	ft_timestamp(void)
+{
+	struct timeval	time;
+
+	gettimeoftheday(&t, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
