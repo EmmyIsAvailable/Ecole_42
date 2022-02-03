@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 11:22:39 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/31 17:59:16 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:22:45 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int ac, char **av)
 		ft_init(&arg, ac, av);
 		arg.tab = fill_stack(&arg, ac, av);
 		if (!arg.tab)
-			ft_error("Error : filling tab failed\n", 1, &arg);
+			ft_error("Error\n", 1, &arg);
 		push_swap(&arg);
 		ft_free_tab(arg.tab);
 		ft_lstdel(arg.a);
