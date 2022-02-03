@@ -1,6 +1,6 @@
 NAME	= philo
 
-SRCS	= main.c utils.c
+SRCS	= main.c utils.c core.c
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -8,7 +8,7 @@ RM	= rm -f
 
 CC	= gcc
 
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -pthread -Wall -Wextra -Werror
 
 all:		${NAME}
 

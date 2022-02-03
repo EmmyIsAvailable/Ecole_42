@@ -9,16 +9,17 @@ void	ft_putstr(char *str)
 	write(1, str, i);
 }
 
-/*int	ft_init_philo(t_data *data)
+int	ft_init_philo(t_data *data)
 {
 	int	i;
 
 	i = data->nb_philos;
-	while (i)
+	while (i >= 0)
 	{
-		data->philosophers[i]
+		data->philosophers[i].address = i;
+		i--;
 	}
-}*/
+}
 
 int	ft_init_data(t_data *data, char **av)
 {
@@ -26,11 +27,12 @@ int	ft_init_data(t_data *data, char **av)
 	data->time_death = ft_atoi(av[2]);
 	data->time_eat = ft_atoi(av[3]);
 	data->time_sleep = ft_atoi(av[4]);
+	data->death = 0;
 	if (data->nb_philos < 1 || data->nb_philos > 250 || data->time_death < 0 || data->time_eat < 0 || data->time_sleep < 0)
 		return (1);
 	if (!data->nb_eat)
 		data->nb_eat = -1;
-	//ft_init_philo(data);
+	ft_init_philo(data);
 	return (0);
 }
 

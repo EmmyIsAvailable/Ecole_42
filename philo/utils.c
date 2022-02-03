@@ -44,3 +44,12 @@ long long	ft_timestamp(void)
 	gettimeoftheday(&t, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
+
+void	ft_message(t_data *data, int address, char *str)
+{
+	pthread_mutex_lock(&(data->writing));
+	if (!data->death)
+		printf("%lld : Philosopher %d %s\n", (ft_timestamp() - data->beginning), (address + 1), str);
+	pthread_mutex_unlock(&data->writing);
+	return ;
+}
