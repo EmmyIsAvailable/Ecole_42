@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:10:11 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/28 11:51:26 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:10:50 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,19 @@ static char	**fill_words(char **res, char const *s, char c)
 	}
 	return (res);
 }
-static void    **ft_free_tab(char **data)
-{
-        int     i;
 
-        i = -1;
-        while (data[++i])
-        {
-                free(data[i]);
-                data[i] = NULL;
-        }
+static void	**ft_free_tab(char **data)
+{
+	int	i;
+
+	i = -1;
+	while (data[++i])
+	{
+		free(data[i]);
+		data[i] = NULL;
+	}
 	free(data);
-        return (NULL);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
