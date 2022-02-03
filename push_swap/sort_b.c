@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:21:05 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/31 12:21:13 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:50:36 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,31 +93,31 @@ t_stack	*ft_sort_b(t_var *arg, int len)
 	return (arg->b);
 }
 
-int    ft_median_sorted_b(t_var *arg, int *r, int *p, int len)
+int	ft_median_sorted_b(t_var *arg, int *r, int *p, int len)
 {
-        int     median;
-        t_stack *tmp;
-        int     i;
+	int		median;
+	t_stack	*tmp;
+	int		i;
 
-        median = ft_find_median(arg->b, 2, len);
-        i = 0;
-        while (i < len && while_above_median(arg, len - i, median))
-        {
-                if (arg->b->val > median)
-                {
-                        *p += 1;
-                        tmp = arg->b->next;
+	median = ft_find_median(arg->b, 2, len);
+	i = 0;
+	while (i < len && while_above_median(arg, len - i, median))
+	{
+		if (arg->b->val > median)
+		{
+			*p += 1;
+			tmp = arg->b->next;
 			ft_choice(arg, 4);
 			arg->b = tmp;
 			if (tmp)
 				arg->b->prev = NULL;
-                }
-                else
-                {
-                        *r += 1;
-                        ft_choice(arg, 7);
-                }
-                i++;
-        }
+		}
+		else
+		{
+			*r += 1;
+			ft_choice(arg, 7);
+		}
+		i++;
+	}
 	return (*p);
 }

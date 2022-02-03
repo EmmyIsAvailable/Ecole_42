@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:20:55 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/31 12:20:02 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:46:16 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_stack	*ft_sort_a(t_var *arg, int len)
 			ft_sort_3_a(arg);
 		else
 			ft_sort_short_a(arg, arg->a);
-		return(arg->a);
+		return (arg->a);
 	}
 	ft_median_sorted_a(arg, &r, &p, len);
 	ft_reverse_a(arg, &r);

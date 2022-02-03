@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:05:10 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/28 14:20:40 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:24:46 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_lstdel(t_stack *a)
 
 t_stack	*ft_fill_stack(t_var *arg)
 {
-	int	i;
+	int		i;
 	t_stack	*new;
 
 	arg->a = NULL;
@@ -68,7 +68,7 @@ t_stack	*ft_fill_stack(t_var *arg)
 
 int	ft_size_stack(t_stack *a)
 {
-	int	i;
+	int		i;
 	t_stack	*tmp;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:20:41 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/31 12:18:55 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:29:50 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	*ft_sort_tab(int *tab, int len)
 
 int	ft_find_median(t_stack *a, int stack, int len)
 {
-	int	i;
-	int	median;
-	int	*tab;
+	int		i;
+	int		median;
+	int		*tab;
 	t_stack	*tmp;
 
 	i = -1;
@@ -65,9 +65,9 @@ int	ft_find_median(t_stack *a, int stack, int len)
 
 int	ft_median_sorted_a(t_var *arg, int *r, int *p, int len)
 {
-	int	median;
+	int		median;
 	t_stack	*tmp;
-	int	i;
+	int		i;
 
 	median = ft_find_median(arg->a, 1, len);
 	i = 0;
@@ -94,7 +94,7 @@ int	ft_median_sorted_a(t_var *arg, int *r, int *p, int len)
 
 int	while_under_median(t_var *arg, int n, int median)
 {
-	int	i;
+	int		i;
 	t_stack	*tmp;
 
 	i = 0;
@@ -111,7 +111,7 @@ int	while_under_median(t_var *arg, int n, int median)
 
 int	while_above_median(t_var *arg, int n, int median)
 {
-	int	i;
+	int		i;
 	t_stack	*tmp;
 
 	i = 0;

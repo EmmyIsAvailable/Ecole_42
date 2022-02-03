@@ -6,45 +6,37 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:21:23 by eruellan          #+#    #+#             */
-/*   Updated: 2022/01/28 12:57:47 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:55:34 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    **ft_free_tab(char **data)
+void	**ft_free_tab(char **data)
 {
-        int     i;
+	int	i;
 
-        i = -1;
-        while (data[++i])
-        {
-                free(data[i]);
-                data[i] = NULL;
-        }
+	i = -1;
+	while (data[++i])
+	{
+		free(data[i]);
+		data[i] = NULL;
+	}
 	free(data);
-        return (NULL);
-}
-
-void	free_init(t_var *arg)
-{
-	//if(arg->a)
-	//	ft_lstdel(&arg->a);
-	if (arg->tab)
-		ft_free_tab(arg->tab);
+	return (NULL);
 }
 
 long long	ft_atoll(char *nb)
 {
 	unsigned long long	res;
-	int			signe;
-	int			i;
+	int					signe;
+	int					i;
 
 	i = 0;
 	signe = 1;
 	res = 0;
-	while (nb[i] == '\f' || nb[i] == '\n' || nb[i] == '\r' || nb[i] == '\t' 
-			|| nb[i] == '\v' || nb[i] == ' ')
+	while (nb[i] == '\f' || nb[i] == '\n' || nb[i] == '\r' || nb[i] == '\t'
+		|| nb[i] == '\v' || nb[i] == ' ')
 		i++;
 	if (nb[i] == '-')
 		signe = -1;

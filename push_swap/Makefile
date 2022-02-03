@@ -1,6 +1,6 @@
 NAME	= push_swap
 
-SRCS	= main.c action.c check_args.c list.c operationbis.c utils.c sort_a.c median.c \
+SRCS	= main.c action.c check_args.c list.c operation.c utils.c sort_a.c median.c \
 	  	sort_b.c sort_short.c
 
 OBJS	= ${SRCS:.c=.o}
