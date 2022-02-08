@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 14:43:50 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/04 14:44:01 by eruellan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "philo.h"
 
 void	ft_putstr(char *str)
@@ -21,6 +9,25 @@ void	ft_putstr(char *str)
 	write(1, str, i);
 }
 
+int	ft_init_mutex(t_data *data)
+{
+	int	i;
+
+	i = data->nb_philos;
+	while (i >= 0)
+	{
+		if (pthread_mutex_init(&(data->forks[i]), NULL) != 0)
+			return (1);
+		i--;
+	}
+	if (pthread_mutex_init(&(data->is_writing), NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&(data->busy_checking), NULL) != 0)
+		return (1);
+	return (0);
+
+}
+
 int	ft_init_philo(t_data *data)
 {
 	int	i;
@@ -29,8 +36,14 @@ int	ft_init_philo(t_data *data)
 	while (i >= 0)
 	{
 		data->philosophers[i].address = i;
+		data->philosophers[i].left_fork = i;
+		data->philosophers[i].right_fork = i + 1;
+		data->philosophers[i].times_eaten = 0;
+		data->philosophers[i].last_meal = 0;
+		data->philosophers[i].data = data;
 		i--;
 	}
+	return (0);
 }
 
 int	ft_init_data(t_data *data, char **av)
@@ -40,11 +53,14 @@ int	ft_init_data(t_data *data, char **av)
 	data->time_eat = ft_atoi(av[3]);
 	data->time_sleep = ft_atoi(av[4]);
 	data->death = 0;
+	data->fed_up = 0;
 	if (data->nb_philos < 1 || data->nb_philos > 250 || data->time_death < 0 || data->time_eat < 0 || data->time_sleep < 0)
 		return (1);
 	if (!data->nb_eat)
 		data->nb_eat = -1;
 	ft_init_philo(data);
+	if (ft_init_mutex(data))
+		return (1);
 	return (0);
 }
 

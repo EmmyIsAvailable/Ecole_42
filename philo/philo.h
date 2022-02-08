@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 14:43:38 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/04 14:43:40 by eruellan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -24,7 +12,13 @@ struct s_data;
 
 typedef struct s_philo
 {
-	pthread_t	address;
+	int		address;
+	int		left_fork;
+	int		right_fork;
+	long long	last_meal;
+	int		times_eaten;
+	pthread_t	thread_id;
+	struct s_data	*data;
 }	t_philo;
 
 typedef struct s_data
@@ -35,23 +29,31 @@ typedef struct s_data
 	int		time_sleep;
 	int		nb_eat;
 	long long	beginning;
-	bool		death;
+	int		death;
+	int		fed_up;
 	pthread_mutex_t	forks[250];
 	t_philo		philosophers[250];
 	pthread_mutex_t	is_writing;
+	pthread_mutex_t	busy_checking;
 }	t_data;
 
 /*main*/
 void	ft_putstr(char *str);
 int		ft_init_philo(t_data *data);
-int		ft_init_data(t_data *datam char **av);
+int		ft_init_data(t_data *data, char **av);
+int		ft_init_mutex(t_data *data);
 
 /*utils*/
 int		ft_atoi(const char *str);
 long long	ft_timestamp(void);
 void		ft_message(t_data *data, int address, char *str);
+void		ft_sleep(int time, t_data *data);
 
 /*core*/
 int		ft_philo(t_data *data);
+void		ft_eat(t_philo *philo, t_data *data);
+void		ft_die(t_data *data);
+void		ft_exit_mutex(t_data *data);
+void		*ft_threads(void *philo);
 
 #endif

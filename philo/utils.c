@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -41,15 +41,28 @@ long long	ft_timestamp(void)
 {
 	struct timeval	time;
 
-	gettimeoftheday(&t, NULL);
+	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
 void	ft_message(t_data *data, int address, char *str)
 {
-	pthread_mutex_lock(&(data->writing));
+	pthread_mutex_lock(&(data->is_writing));
 	if (!data->death)
 		printf("%lld : Philosopher %d %s\n", (ft_timestamp() - data->beginning), (address + 1), str);
-	pthread_mutex_unlock(&data->writing);
+	pthread_mutex_unlock(&data->is_writing);
 	return ;
+}
+
+void	ft_sleep(int time, t_data *data)
+{
+	long long	start;
+
+	start = ft_timestamp();
+	while (!(data->death))
+	{
+		if (start - ft_timestamp() >= time)
+			break ;
+		usleep(30);
+	}
 }
