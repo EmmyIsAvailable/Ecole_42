@@ -76,7 +76,8 @@ int	main(int ac, char **av)
 	}
 	if (ac == 5 || ac == 6)
 	{
-		ft_init_data(&data, av);
+		if ((ft_init_data(&data, av)) != 0)
+			return (1);
 		ft_philo(&data);
 	}
 	else

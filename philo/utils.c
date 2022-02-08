@@ -61,7 +61,7 @@ void	ft_sleep(int time, t_data *data)
 	start = ft_timestamp();
 	while (!(data->death))
 	{
-		if (start - ft_timestamp() >= time)
+		if (ft_timestamp() - start >= time)
 			break ;
 		usleep(30);
 	}

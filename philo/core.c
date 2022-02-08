@@ -18,7 +18,7 @@ void	ft_die(t_data *data)
 		while (++i < data->nb_philos && data->death == 0)
 		{
 			pthread_mutex_lock(&(data->busy_checking));
-			if (data->philosophers[i].last_meal - ft_timestamp() > data->time_death)
+			if (ft_timestamp() - data->philosophers[i].last_meal > data->time_death)
 			{
 				ft_message(data, i, "died");
 				data->death = 1;
@@ -42,7 +42,7 @@ void	ft_eat(t_philo *philo, t_data *data)
 	ft_sleep(data->time_eat, data);
 	(philo->times_eaten)++;
 	pthread_mutex_unlock(&(data->forks[philo->left_fork]));
-	pthread_mutex_unlock(&(data->forks[philo->left_fork]));
+	pthread_mutex_unlock(&(data->forks[philo->right_fork]));
 }
 
 void	*ft_threads(void *philo_void)
@@ -88,6 +88,7 @@ int	ft_philo(t_data *data)
 	{
 		if (pthread_create(&(philos[i].thread_id), NULL, ft_threads, &(philos[i])) != 0)
 			return (1);
+		philos[i].last_meal = ft_timestamp();
 		i++;
 	}
 	ft_die(data);
