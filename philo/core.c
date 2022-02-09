@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:57:18 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/09 12:05:49 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/09 16:31:29 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void	ft_die(t_data *data, t_philo *philos)
 {
 	int	i;
 
-	i = 0;
-	while (data->fed_up != -1 && data->death == 0)
+	while (data->fed_up != 1 && data->death == 0)
 	{
-		while (data->fed_up != -1 && i < data->nb_philos && philos[i].times_eaten >= data->nb_eat)
+		i = 0;
+		while (data->nb_eat != -1 && i < data->nb_philos
+			&& philos[i].times_eaten >= data->nb_eat)
 			i++;
 		if (i == data->nb_philos)
 			data->fed_up = 1;
@@ -60,7 +61,7 @@ void	*ft_threads(void *philo_void)
 	philo = (t_philo *)philo_void;
 	if (philo->address % 2 == 0)
 		usleep(15000);
-	while (philo->data->death == 0 || philo->data->fed_up != 1)
+	while (philo->data->death == 0 && philo->data->fed_up != 1)
 	{
 		ft_eat(philo, philo->data);
 		ft_message(philo->data, philo->address, "is sleeping");
@@ -100,7 +101,7 @@ int	ft_philo(t_data *data)
 		philos[i].last_meal = ft_timestamp();
 		i++;
 	}
-	ft_die(data, philos);
+	ft_die(data, data->philosophers);
 	ft_exit_mutex(data);
 	return (0);
 }
