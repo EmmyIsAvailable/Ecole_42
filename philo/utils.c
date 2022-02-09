@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:49:33 by eruellan          #+#    #+#             */
-/*   Updated: 2021/11/23 10:50:38 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/09 11:28:00 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	ft_message(t_data *data, int address, char *str)
 {
 	pthread_mutex_lock(&(data->is_writing));
 	if (!data->death)
-		printf("%lld : Philosopher %d %s\n", (ft_timestamp() - data->beginning), (address + 1), str);
+		printf("%lld : Philosopher %d %s\n",
+			(ft_timestamp() - data->beginning), (address + 1), str);
 	pthread_mutex_unlock(&data->is_writing);
 	return ;
 }

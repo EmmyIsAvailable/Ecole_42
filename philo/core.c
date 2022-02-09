@@ -1,31 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   core.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 10:57:18 by eruellan          #+#    #+#             */
+/*   Updated: 2022/02/09 12:05:49 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void	ft_die(t_data *data)
+void	ft_die(t_data *data, t_philo *philos)
 {
 	int	i;
 
 	i = 0;
-	while (data->fed_up == 0 && data->death == 0)
+	while (data->fed_up != -1 && data->death == 0)
 	{
-		if (data->nb_eat != -1)
-		{
-			while (i < data->nb_philos && data->philosophers[i].times_eaten >= data->nb_eat)
-				i++;
-			if (i == data->nb_philos)
-				data->fed_up = 1;
-		}
+		while (data->fed_up != -1 && i < data->nb_philos && philos[i].times_eaten >= data->nb_eat)
+			i++;
+		if (i == data->nb_philos)
+			data->fed_up = 1;
 		i = -1;
 		while (++i < data->nb_philos && data->death == 0)
 		{
 			pthread_mutex_lock(&(data->busy_checking));
-			if (ft_timestamp() - data->philosophers[i].last_meal > data->time_death)
+			if (ft_timestamp() - philos[i].last_meal > data->time_death)
 			{
 				ft_message(data, i, "died");
 				data->death = 1;
 			}
 			pthread_mutex_unlock(&(data->busy_checking));
 		}
-
 	}
 }
 
@@ -52,7 +60,7 @@ void	*ft_threads(void *philo_void)
 	philo = (t_philo *)philo_void;
 	if (philo->address % 2 == 0)
 		usleep(15000);
-	while (philo->data->death == 0)
+	while (philo->data->death == 0 || philo->data->fed_up != 1)
 	{
 		ft_eat(philo, philo->data);
 		ft_message(philo->data, philo->address, "is sleeping");
@@ -79,19 +87,20 @@ void	ft_exit_mutex(t_data *data)
 int	ft_philo(t_data *data)
 {
 	t_philo	*philos;
-	int	i;
+	int		i;
 
 	i = 0;
 	data->beginning = ft_timestamp();
 	philos = data->philosophers;
 	while (i < data->nb_philos)
 	{
-		if (pthread_create(&(philos[i].thread_id), NULL, ft_threads, &(philos[i])) != 0)
+		if (pthread_create(&(philos[i].thread_id),
+				NULL, ft_threads, &(philos[i])) != 0)
 			return (1);
 		philos[i].last_meal = ft_timestamp();
 		i++;
 	}
-	ft_die(data);
+	ft_die(data, philos);
 	ft_exit_mutex(data);
 	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 11:22:53 by eruellan          #+#    #+#             */
+/*   Updated: 2022/02/09 11:27:33 by eruellan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	ft_putstr(char *str)
@@ -25,7 +37,6 @@ int	ft_init_mutex(t_data *data)
 	if (pthread_mutex_init(&(data->busy_checking), NULL) != 0)
 		return (1);
 	return (0);
-
 }
 
 int	ft_init_philo(t_data *data)
@@ -54,7 +65,8 @@ int	ft_init_data(t_data *data, char **av)
 	data->time_sleep = ft_atoi(av[4]);
 	data->death = 0;
 	data->fed_up = 0;
-	if (data->nb_philos < 1 || data->nb_philos > 250 || data->time_death < 0 || data->time_eat < 0 || data->time_sleep < 0)
+	if (data->nb_philos < 1 || data->nb_philos > 250
+		|| data->time_death < 0 || data->time_eat < 0 || data->time_sleep < 0)
 		return (1);
 	if (!data->nb_eat)
 		data->nb_eat = -1;
@@ -81,6 +93,6 @@ int	main(int ac, char **av)
 		ft_philo(&data);
 	}
 	else
-		ft_putstr("Wrong format : ./philo <nb_philo> <time_death> <time_eat> <time_sleep> [nb_eat]\n");
+		ft_putstr("Wrong format: ./exe <philo> <death> <eat> <sleep> [meals]\n");
 	return (0);
 }

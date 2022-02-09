@@ -6,14 +6,14 @@ OBJS	= ${SRCS:.c=.o}
 
 RM	= rm -f
 
-CC	= gcc
+CC	= gcc -pthread
 
-FLAGS	= -pthread -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror
 
 all:		${NAME}
 
 .c.o:      
-			@${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+			@${CC} ${FLAGS} -c $< -o ${<:.c=.o} 
 
 ${NAME}:	${OBJS} 
 			@echo "$(shell tput bold)$(shell tput setaf 5)Compiling...$(shell tput sgr0)"
