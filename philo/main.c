@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 11:22:53 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/09 11:27:33 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:14:56 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_init_philo(t_data *data)
 	{
 		data->philosophers[i].address = i;
 		data->philosophers[i].left_fork = i;
-		data->philosophers[i].right_fork = i + 1;
+		data->philosophers[i].right_fork = (i + 1) % data->nb_philos;
 		data->philosophers[i].times_eaten = 0;
 		data->philosophers[i].last_meal = 0;
 		data->philosophers[i].data = data;

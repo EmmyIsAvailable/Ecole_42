@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:57:18 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/09 16:31:29 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:21:30 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_die(t_data *data, t_philo *philos)
 			}
 			pthread_mutex_unlock(&(data->busy_checking));
 		}
+		usleep(1000);
 	}
 }
 
@@ -44,14 +45,14 @@ void	ft_eat(t_philo *philo, t_data *data)
 	ft_message(data, philo->address, "has taken a fork");
 	pthread_mutex_lock(&(data->forks[philo->right_fork]));
 	ft_message(data, philo->address, "has taken a fork");
-	pthread_mutex_lock(&(data->busy_checking));
+	//pthread_mutex_unlock(&(data->forks[philo->right_fork]));
+	//pthread_mutex_unlock(&(data->forks[philo->left_fork]));
 	ft_message(data, philo->address, "is eating");
+	pthread_mutex_lock(&(data->busy_checking));
 	philo->last_meal = ft_timestamp();
 	pthread_mutex_unlock(&(data->busy_checking));
 	ft_sleep(data->time_eat, data);
 	(philo->times_eaten)++;
-	pthread_mutex_unlock(&(data->forks[philo->left_fork]));
-	pthread_mutex_unlock(&(data->forks[philo->right_fork]));
 }
 
 void	*ft_threads(void *philo_void)
@@ -73,14 +74,14 @@ void	*ft_threads(void *philo_void)
 
 void	ft_exit_mutex(t_data *data)
 {
-	int	i;
+	/*int	i;
 
 	i = -1;
 	while (++i < data->nb_philos)
 		pthread_join(data->philosophers[i].thread_id, NULL);
 	i = -1;
 	while (++i < data->nb_philos)
-		pthread_mutex_destroy(&(data->forks[i]));
+		pthread_mutex_destroy(&(data->forks[i]));*/
 	pthread_mutex_destroy(&(data->is_writing));
 	pthread_mutex_destroy(&(data->busy_checking));
 }
@@ -98,7 +99,11 @@ int	ft_philo(t_data *data)
 		if (pthread_create(&(philos[i].thread_id),
 				NULL, ft_threads, &(philos[i])) != 0)
 			return (1);
+		pthread_mutex_lock(&(data->busy_checking));
 		philos[i].last_meal = ft_timestamp();
+		pthread_mutex_unlock(&(data->busy_checking));
+		pthread_detach(philos[i].thread_id);
+		usleep(100);
 		i++;
 	}
 	ft_die(data, data->philosophers);
