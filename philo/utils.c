@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:49:33 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/09 16:14:19 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:18:22 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,14 @@ long long	ft_timestamp(void)
 void	ft_message(t_data *data, int address, char *str)
 {
 	pthread_mutex_lock(&(data->is_writing));
+	pthread_mutex_lock(&(data->check_death));
 	if (!data->death)
+	{
+		pthread_mutex_unlock(&(data->check_death));
 		printf("%lld : Philosopher %d %s\n",
 			(ft_timestamp() - data->beginning), (address + 1), str);
+	}
+	pthread_mutex_unlock(&(data->check_death));
 	pthread_mutex_unlock(&data->is_writing);
 	return ;
 }
@@ -60,10 +65,13 @@ void	ft_sleep(int time, t_data *data)
 	long long	start;
 
 	start = ft_timestamp();
+	pthread_mutex_lock(&(data->check_death));
 	while (!(data->death))
 	{
+		pthread_mutex_unlock(&(data->check_death));
 		if (ft_timestamp() - start >= time)
 			break ;
-		usleep(30);
+		usleep(50);
 	}
+	pthread_mutex_unlock(&(data->check_death));
 }

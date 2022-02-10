@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 11:03:50 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/10 14:14:48 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:49:54 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef struct s_data
 	pthread_mutex_t		forks[250];
 	t_philo				philosophers[250];
 	pthread_mutex_t		is_writing;
-	pthread_mutex_t		busy_checking;
+	pthread_mutex_t		check_death;
+	pthread_mutex_t		meal_check;
 }	t_data;
 
 /*main*/

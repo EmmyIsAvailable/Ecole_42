@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 11:22:53 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/10 14:14:56 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:49:21 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_putstr(char *str)
 {
 	int	i;
 
+	i = 0;
 	while (str[i])
 		i++;
 	write(1, str, i);
@@ -34,7 +35,9 @@ int	ft_init_mutex(t_data *data)
 	}
 	if (pthread_mutex_init(&(data->is_writing), NULL) != 0)
 		return (1);
-	if (pthread_mutex_init(&(data->busy_checking), NULL) != 0)
+	if (pthread_mutex_init(&(data->check_death), NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&(data->meal_check), NULL) != 0)
 		return (1);
 	return (0);
 }
