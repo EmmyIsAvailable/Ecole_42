@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 11:03:50 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/10 15:49:54 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/11 15:07:12 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int				ft_init_mutex(t_data *data);
 int				ft_atoi(const char *str);
 long long		ft_timestamp(void);
 void			ft_message(t_data *data, int address, char *str);
-void			ft_sleep(int time, t_data *data);
+void			ft_sleep(int time);
+int				ft_is_alive(t_data *data);
 
 /*core*/
 int				ft_philo(t_data *data);

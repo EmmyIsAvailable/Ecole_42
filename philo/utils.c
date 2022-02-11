@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:49:33 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/10 17:18:22 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/11 15:29:03 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,33 +45,37 @@ long long	ft_timestamp(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
+int	ft_is_alive(t_data *data)
+{
+	int	alive;
+
+	pthread_mutex_lock(&data->check_death);
+	alive = data->death;
+	pthread_mutex_unlock(&data->check_death);
+	return (alive);
+}
+
 void	ft_message(t_data *data, int address, char *str)
 {
 	pthread_mutex_lock(&(data->is_writing));
-	pthread_mutex_lock(&(data->check_death));
-	if (!data->death)
+	if (!ft_is_alive(data))
 	{
-		pthread_mutex_unlock(&(data->check_death));
 		printf("%lld : Philosopher %d %s\n",
 			(ft_timestamp() - data->beginning), (address + 1), str);
 	}
-	pthread_mutex_unlock(&(data->check_death));
 	pthread_mutex_unlock(&data->is_writing);
 	return ;
 }
 
-void	ft_sleep(int time, t_data *data)
+void	ft_sleep(int time)
 {
 	long long	start;
 
 	start = ft_timestamp();
-	pthread_mutex_lock(&(data->check_death));
-	while (!(data->death))
+	while (1)
 	{
-		pthread_mutex_unlock(&(data->check_death));
 		if (ft_timestamp() - start >= time)
 			break ;
 		usleep(50);
 	}
-	pthread_mutex_unlock(&(data->check_death));
 }

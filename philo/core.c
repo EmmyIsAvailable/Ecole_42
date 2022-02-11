@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 10:57:18 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/10 17:17:55 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/11 15:26:27 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_die(t_data *data, t_philo *philos)
 {
 	int	i;
 
-	while (data->fed_up != 1 && data->death == 0)
+	while (1 /*data->fed_up != 1 && !ft_is_alive(data)*/)
 	{
 		i = 0;
 		while (data->nb_eat != -1 && i < data->nb_philos
@@ -24,18 +24,25 @@ void	ft_die(t_data *data, t_philo *philos)
 			i++;
 		if (i == data->nb_philos)
 			data->fed_up = 1;
+		if (data->fed_up == 1)
+			break ;
 		i = -1;
-		while (++i < data->nb_philos && data->death == 0)
+		while (++i < data->nb_philos && ft_is_alive(data))
 		{
 			pthread_mutex_lock(&(data->meal_check));
 			if (ft_timestamp() - philos[i].last_meal > data->time_death)
 			{
-				pthread_mutex_unlock(&(data->meal_check));
 				ft_message(data, i, "died");
+				//pthread_mutex_lock(&data->check_death);
 				data->death = 1;
+				//pthread_mutex_unlock(&data->check_death);
 			}
 			pthread_mutex_unlock(&(data->meal_check));
 		}
+		pthread_mutex_lock(&data->check_death);
+		if (data->death == 1)
+			break ;
+		pthread_mutex_unlock(&data->check_death);
 	}
 }
 
@@ -45,10 +52,10 @@ void	ft_eat(t_philo *philo, t_data *data)
 	ft_message(data, philo->address, "has taken a fork");
 	pthread_mutex_lock(&(data->forks[philo->right_fork]));
 	ft_message(data, philo->address, "has taken a fork");
-	ft_sleep(data->time_eat, data);
+	ft_message(data, philo->address, "is eating");
+	ft_sleep(data->time_eat);
 	pthread_mutex_unlock(&(data->forks[philo->right_fork]));
 	pthread_mutex_unlock(&(data->forks[philo->left_fork]));
-	ft_message(data, philo->address, "is eating");
 	pthread_mutex_lock(&(data->meal_check));
 	philo->last_meal = ft_timestamp();
 	pthread_mutex_unlock(&(data->meal_check));
@@ -61,12 +68,12 @@ void	*ft_threads(void *philo_void)
 
 	philo = (t_philo *)philo_void;
 	if (philo->address % 2 == 1)
-		usleep(15000);
-	while (philo->data->death == 0 && philo->data->fed_up != 1)
+	  ft_sleep(15000);
+	while (!ft_is_alive(philo->data) && philo->data->fed_up != 1)
 	{
 		ft_eat(philo, philo->data);
 		ft_message(philo->data, philo->address, "is sleeping");
-		ft_sleep(philo->data->time_sleep, philo->data);
+		ft_sleep(philo->data->time_sleep);
 		ft_message(philo->data, philo->address, "is thinking");
 	}
 	return (NULL);
@@ -100,7 +107,6 @@ int	ft_philo(t_data *data)
 				NULL, ft_threads, &(philos[i])) != 0)
 			return (1);
 		pthread_detach(philos[i].thread_id);
-		usleep(500);
 		i++;
 	}
 	ft_die(data, data->philosophers);

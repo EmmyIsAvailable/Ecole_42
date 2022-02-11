@@ -6,7 +6,7 @@ OBJS	= ${SRCS:.c=.o}
 
 RM	= rm -f
 
-CC	= gcc -pthread
+CC	= gcc -pthread -g3 -fsanitize=thread
 
 FLAGS	= -Wall -Wextra -Werror
 
