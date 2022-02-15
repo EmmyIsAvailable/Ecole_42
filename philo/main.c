@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 11:22:53 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/11 15:08:41 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:21:34 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ int	ft_init_philo(t_data *data)
 	i = data->nb_philos;
 	while (i >= 0)
 	{
+		data->philosophers[i].forks = 0;
 		data->philosophers[i].address = i;
-		data->philosophers[i].left_fork = i;
-		data->philosophers[i].right_fork = (i + 1) % data->nb_philos;
+		data->philosophers[i].lfork = 0;
+		data->philosophers[i].rfork = 0;
+		data->philosophers[i].left_fork_id = i;
+		data->philosophers[i].right_fork_id = (i + 1) % data->nb_philos;
 		data->philosophers[i].times_eaten = 0;
 		data->philosophers[i].last_meal = 0;
 		data->philosophers[i].data = data;
@@ -68,6 +71,10 @@ int	ft_init_data(t_data *data, char **av)
 	data->time_sleep = ft_atoi(av[4]);
 	data->death = 0;
 	data->fed_up = 0;
+	data->forks_bool = malloc(sizeof(char) * data->nb_philos);
+	if (!data->forks_bool)
+		return (1);
+	memset(data->forks_bool, 1, data->nb_philos);
 	if (data->nb_philos < 1 || data->nb_philos > 250
 		|| data->time_death < 0 || data->time_eat < 0 || data->time_sleep < 0)
 		return (1);

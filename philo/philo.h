@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 11:03:50 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/11 15:07:12 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:21:32 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ struct	s_data;
 typedef struct s_philo
 {
 	int				address;
-	int				left_fork;
-	int				right_fork;
+	int				forks;
+	int				left_fork_id;
+	int				right_fork_id;
+	int				lfork;
+	int				rfork;
 	long long		last_meal;
 	int				times_eaten;
 	pthread_t		thread_id;
@@ -43,6 +46,7 @@ typedef struct s_data
 	long long			beginning;
 	int					death;
 	int					fed_up;
+	char				*forks_bool;
 	pthread_mutex_t		forks[250];
 	t_philo				philosophers[250];
 	pthread_mutex_t		is_writing;
@@ -69,5 +73,10 @@ void			ft_eat(t_philo *philo, t_data *data);
 void			ft_die(t_data *data, t_philo *philos);
 void			ft_exit_mutex(t_data *data);
 void			*ft_threads(void *philo);
+
+/*forks*/
+void			ft_get_forks(t_philo *philo);
+void			ft_lock_forks(t_philo *philo);
+int				ft_export_die(t_data *data);
 
 #endif

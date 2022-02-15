@@ -1,12 +1,12 @@
 NAME	= philo
 
-SRCS	= main.c utils.c core.c
+SRCS	= main.c utils.c core.c forks.c
 
 OBJS	= ${SRCS:.c=.o}
 
 RM	= rm -f
 
-CC	= gcc -pthread -g3 -fsanitize=thread
+CC	= gcc -pthread    
 
 FLAGS	= -Wall -Wextra -Werror
 

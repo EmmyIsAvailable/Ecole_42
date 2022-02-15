@@ -6,7 +6,7 @@
 /*   By: eruellan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:49:33 by eruellan          #+#    #+#             */
-/*   Updated: 2022/02/11 15:29:03 by eruellan         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:44:39 by eruellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_message(t_data *data, int address, char *str)
 	pthread_mutex_lock(&(data->is_writing));
 	if (!ft_is_alive(data))
 	{
-		printf("%lld : Philosopher %d %s\n",
+		printf("%lld: %d %s\n",
 			(ft_timestamp() - data->beginning), (address + 1), str);
 	}
 	pthread_mutex_unlock(&data->is_writing);
